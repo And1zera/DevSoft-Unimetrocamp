@@ -1,8 +1,7 @@
-Trabalho de Desenvolvimento de Softwares
+Trabalho de Desenvolvimento de Softwares :books:
 
-Integrantes
+Integrantes :computer:
 
 - Anderson Ferreira da Silva
 - Ketile Santos
 - João Victor Vieira
-
