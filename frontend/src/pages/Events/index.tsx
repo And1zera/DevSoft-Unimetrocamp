@@ -1,5 +1,6 @@
 import React from 'react';
 import { MdShoppingBasket } from 'react-icons/md';
+import { EventList } from '../../components/EventList';
 import { Header } from '../../components/Header';
 import { Cart } from './styles';
 
@@ -15,6 +16,7 @@ export function Events(): JSX.Element {
           <MdShoppingBasket size={36} color="#FFF" />
         </Cart>
       </Header>
+      <EventList />
     </>
   );
 }
