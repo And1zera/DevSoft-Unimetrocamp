@@ -11,7 +11,7 @@ interface CartItemsAmount {
 }
 
 export function EventList(): JSX.Element {
-  const { cart, addProduct } = useCart();
+  const { cart, addProduct, loadShoppingCart } = useCart();
   const [products, setProducts] = useState<Product[]>([]);
 
   const cartItemsAmount = cart.reduce((sumAmount, product) => {
@@ -22,11 +22,13 @@ export function EventList(): JSX.Element {
   useEffect(() => {
     const loadProducts = async () => {
       const { data } = await api.get('/products');
+      const { data: cart } = await api.get('/shoppingCart');
       setProducts(data);
+      loadShoppingCart(cart);
     };
 
     loadProducts();
-  }, []);
+  }, [loadShoppingCart]);
 
   const handleAddProduct = (productId: number) => {
     addProduct(productId);
