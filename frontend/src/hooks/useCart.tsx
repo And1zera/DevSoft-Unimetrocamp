@@ -18,22 +18,34 @@ interface CartContextData {
   removeProduct: (productId: number) => void;
   updatedProductAmount: ({ productId, qtd }: UpdatedProductAmount) => void;
   loadShoppingCart: (product: Product[]) => void;
+  loading: boolean;
 }
 
 const CartContext = createContext({} as CartContextData);
 
 export function CartProvider({ children }: CartProviderProps): JSX.Element {
   const [cart, setCart] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const loadShoppingCart = useCallback((products: Product[]) => {
     setCart(products);
   }, []);
 
-  const addProduct = async (productId: number) => {
-    try {
-      const { data } = await api.get<Product>('/shoppingCart');
-      setCart([...cart, { ...data }]);
+  const updatedProduct = useCallback(async (product: Product, qtd: number) => {
+    await api.put<Product[]>(`/shoppingCart/${product.id}`, {
+      ...product,
+      qtd,
+    });
 
+    const { data } = await api.get<Product[]>('/shoppingCart');
+
+    setCart([...data]);
+  }, []);
+
+  const addProduct = async (productId: number) => {
+    setLoading(true);
+
+    try {
       const productAlreadyInCart = cart.find(
         product => product.id === productId
       );
@@ -48,6 +60,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
           qtd: 1,
         });
         setCart([...cart, { ...data, qtd: 1 }]);
+        setLoading(false);
         toast.success('Produto adicionado ao carrinho');
         return;
       }
@@ -57,26 +70,21 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         return;
       }
 
-      cart.map(async product => {
-        if (product.id === productId) {
-          await api.put(`/shoppingCart/${productId}`, {
-            ...product,
-            qtd: Number(product.qtd + 1),
-          });
-          return;
-        }
-        // eslint-disable-next-line consistent-return
-        return product;
+      cart.map(product => {
+        return product.id === productId
+          ? updatedProduct(product, Number(product.qtd + 1))
+          : product;
       });
-      const { data: shopping } = await api.get<Product[]>('/shoppingCart');
-      setCart(shopping);
+      setLoading(false);
       toast.success('Produto adicionado ao carrinho');
     } catch (err) {
+      setLoading(false);
       toast.error('Erro na adição do produto');
     }
   };
 
   const removeProduct = async (productId: number) => {
+    setLoading(true);
     try {
       const productExistInCart = cart.find(product => product.id === productId);
       if (!productExistInCart) {
@@ -86,8 +94,10 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       await api.delete<Product>(`/shoppingCart/${productExistInCart.id}`);
       const { data: products } = await api.get<Product[]>('/shoppingCart');
       setCart(products);
+      setLoading(false);
       toast.success('Produto removido');
     } catch (err) {
+      setLoading(false);
       toast.error('Erro na remoção do produto');
     }
   };
@@ -96,37 +106,34 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     productId,
     qtd,
   }: UpdatedProductAmount) => {
+    setLoading(true);
     try {
       if (qtd < 1) {
         toast.error('Erro na alteração de quantidade do produto');
         return;
       }
-      const { data } = await api.get(`/products/${productId}`);
-      const productAmount = data.amount;
+      const { data: products } = await api.get(`/products/${productId}`);
+      const productAmount = products.amount;
       const stockNoExistInProduct = qtd > productAmount;
+
       if (stockNoExistInProduct) {
         toast.error('Quantidade solicitada fora de estoque');
         return;
       }
+
       const productExistInCart = cart.find(product => product.id === productId);
       if (!productExistInCart) {
         toast.error('Erro na alteração de quantidade do produto');
         return;
       }
-      cart.map(async product => {
-        if (product.id === productId) {
-          await api.put(`/shoppingCart/${productExistInCart.id}`, {
-            ...product,
-            qtd,
-          });
-          return;
-        }
-        // eslint-disable-next-line consistent-return
-        return product;
+      cart.map(product => {
+        return product.id === productId
+          ? updatedProduct(product, qtd)
+          : product;
       });
-      const { data: products } = await api.get<Product[]>('/shoppingCart');
-      setCart(products);
+      setLoading(false);
     } catch (err) {
+      setLoading(false);
       toast.error('Erro na alteração de quantidade do produto');
     }
   };
@@ -139,6 +146,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         removeProduct,
         updatedProductAmount,
         loadShoppingCart,
+        loading,
       }}
     >
       {children}
