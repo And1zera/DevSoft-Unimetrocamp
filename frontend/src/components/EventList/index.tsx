@@ -12,7 +12,8 @@ interface CartItemsAmount {
 }
 
 export function EventList(): JSX.Element {
-  const { cart, addProduct, loadShoppingCart, loading } = useCart();
+  const { cart, addProduct, loadShoppingCart, loading, handleLoading } =
+    useCart();
   const [products, setProducts] = useState<Product[]>([]);
 
   const cartItemsAmount = cart.reduce((sumAmount, product) => {
@@ -22,14 +23,16 @@ export function EventList(): JSX.Element {
 
   useEffect(() => {
     const loadProducts = async () => {
+      handleLoading(true);
       const { data } = await api.get('/products');
       const { data: cart } = await api.get('/shoppingCart');
       setProducts(data);
       loadShoppingCart(cart);
+      handleLoading(false);
     };
 
     loadProducts();
-  }, [loadShoppingCart]);
+  }, [loadShoppingCart, handleLoading]);
 
   const handleAddProduct = (productId: number) => {
     addProduct(productId);
@@ -59,8 +62,11 @@ export function EventList(): JSX.Element {
                 </div>
               </div>
             </div>
-
-            <button type="button" onClick={() => handleAddProduct(product.id)}>
+            <button
+              type="button"
+              onClick={() => handleAddProduct(product.id)}
+              disabled={loading}
+            >
               <div>
                 <MdAddShoppingCart size={16} color="#FFF" />
                 {cartItemsAmount[product.id] || 0}

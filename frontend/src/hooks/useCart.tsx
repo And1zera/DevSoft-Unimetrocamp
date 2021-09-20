@@ -19,6 +19,7 @@ interface CartContextData {
   updatedProductAmount: ({ productId, qtd }: UpdatedProductAmount) => void;
   loadShoppingCart: (product: Product[]) => void;
   loading: boolean;
+  handleLoading: (loading: boolean) => void;
 }
 
 const CartContext = createContext({} as CartContextData);
@@ -29,6 +30,10 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
   const loadShoppingCart = useCallback((products: Product[]) => {
     setCart(products);
+  }, []);
+
+  const handleLoading = useCallback((loading: boolean) => {
+    setLoading(loading);
   }, []);
 
   const updatedProduct = useCallback(async (product: Product, qtd: number) => {
@@ -43,9 +48,9 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
   }, []);
 
   const addProduct = async (productId: number) => {
-    setLoading(true);
-
     try {
+      setLoading(true);
+
       const productAlreadyInCart = cart.find(
         product => product.id === productId
       );
@@ -60,13 +65,14 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
           qtd: 1,
         });
         setCart([...cart, { ...data, qtd: 1 }]);
-        setLoading(false);
         toast.success('Produto adicionado ao carrinho');
+        setLoading(false);
         return;
       }
 
       if (productAlreadyInCart && product.amount <= productAlreadyInCart.qtd) {
         toast.error('Quantidade solicitada fora de estoque');
+        setLoading(false);
         return;
       }
 
@@ -89,16 +95,17 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       const productExistInCart = cart.find(product => product.id === productId);
       if (!productExistInCart) {
         toast.error('Erro na remoção do produto');
+        setLoading(false);
         return;
       }
       await api.delete<Product>(`/shoppingCart/${productExistInCart.id}`);
       const { data: products } = await api.get<Product[]>('/shoppingCart');
       setCart(products);
-      setLoading(false);
       toast.success('Produto removido');
-    } catch (err) {
       setLoading(false);
+    } catch (err) {
       toast.error('Erro na remoção do produto');
+      setLoading(false);
     }
   };
 
@@ -106,10 +113,12 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     productId,
     qtd,
   }: UpdatedProductAmount) => {
-    setLoading(true);
     try {
+      setLoading(true);
       if (qtd < 1) {
         toast.error('Erro na alteração de quantidade do produto');
+        setLoading(false);
+
         return;
       }
       const { data: products } = await api.get(`/products/${productId}`);
@@ -118,14 +127,19 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
       if (stockNoExistInProduct) {
         toast.error('Quantidade solicitada fora de estoque');
+        setLoading(false);
+
         return;
       }
 
       const productExistInCart = cart.find(product => product.id === productId);
       if (!productExistInCart) {
         toast.error('Erro na alteração de quantidade do produto');
+        setLoading(false);
+
         return;
       }
+
       cart.map(product => {
         return product.id === productId
           ? updatedProduct(product, qtd)
@@ -133,8 +147,8 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       });
       setLoading(false);
     } catch (err) {
-      setLoading(false);
       toast.error('Erro na alteração de quantidade do produto');
+      setLoading(false);
     }
   };
 
@@ -147,6 +161,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         updatedProductAmount,
         loadShoppingCart,
         loading,
+        handleLoading,
       }}
     >
       {children}

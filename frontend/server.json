@@ -63,17 +63,6 @@
   ],
   "shoppingCart": [
     {
-      "id": 1,
-      "title": "Homem aranha | sem volta para casa",
-      "fullPrice": 50,
-      "halfPrice": 25,
-      "amount": 25,
-      "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
-      "date": "15/09/2021",
-      "location": "Shopping Dom Pedro",
-      "qtd": 5
-    },
-    {
       "id": 2,
       "title": "The Witcher 2",
       "fullPrice": 100,
@@ -82,7 +71,18 @@
       "image": "https://mixdeseries.com.br/wp-content/uploads/2019/12/The-Witcher-2-temporada.jpg",
       "date": "28/11/2021",
       "location": "Campinas Shopping",
-      "qtd": 4
+      "qtd": 3
+    },
+    {
+      "id": 3,
+      "title": "Mulan | live action",
+      "fullPrice": 20,
+      "halfPrice": 10,
+      "amount": 3,
+      "image": "https://media.hugogloss.uol.com.br/uploads/2019/07/primeiro-trailer-mulan.jpg",
+      "date": "10/10/2021",
+      "location": "Campinas Shopping",
+      "qtd": 2
     },
     {
       "id": 6,
@@ -93,7 +93,7 @@
       "image": "https://teoriageek.com.br/wp-content/uploads/2021/06/Luca-Banner-1024x576-1.jpg",
       "date": "12/09/2021",
       "location": "Shopping Dom Pedro",
-      "qtd": 2
+      "qtd": 1
     }
   ]
 }
