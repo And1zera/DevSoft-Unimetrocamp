@@ -61,39 +61,5 @@
       "location": "Shopping Dom Pedro"
     }
   ],
-  "shoppingCart": [
-    {
-      "id": 2,
-      "title": "The Witcher 2",
-      "fullPrice": 100,
-      "halfPrice": 50,
-      "amount": 5,
-      "image": "https://mixdeseries.com.br/wp-content/uploads/2019/12/The-Witcher-2-temporada.jpg",
-      "date": "28/11/2021",
-      "location": "Campinas Shopping",
-      "qtd": 3
-    },
-    {
-      "id": 3,
-      "title": "Mulan | live action",
-      "fullPrice": 20,
-      "halfPrice": 10,
-      "amount": 3,
-      "image": "https://media.hugogloss.uol.com.br/uploads/2019/07/primeiro-trailer-mulan.jpg",
-      "date": "10/10/2021",
-      "location": "Campinas Shopping",
-      "qtd": 2
-    },
-    {
-      "id": 6,
-      "title": "Luca | Disney Pixar",
-      "fullPrice": 100.4,
-      "halfPrice": 50.2,
-      "amount": 25,
-      "image": "https://teoriageek.com.br/wp-content/uploads/2021/06/Luca-Banner-1024x576-1.jpg",
-      "date": "12/09/2021",
-      "location": "Shopping Dom Pedro",
-      "qtd": 1
-    }
-  ]
+  "shoppingCart": []
 }
