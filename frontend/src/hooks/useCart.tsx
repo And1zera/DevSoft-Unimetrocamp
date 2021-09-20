@@ -122,25 +122,26 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         return;
       }
       const { data: products } = await api.get(`/products/${productId}`);
+      const { data: carts } = await api.get<Product[]>('/shoppingCart');
       const productAmount = products.amount;
       const stockNoExistInProduct = qtd > productAmount;
 
       if (stockNoExistInProduct) {
         toast.error('Quantidade solicitada fora de estoque');
         setLoading(false);
-
         return;
       }
 
-      const productExistInCart = cart.find(product => product.id === productId);
+      const productExistInCart = carts.find(
+        product => product.id === productId
+      );
       if (!productExistInCart) {
         toast.error('Erro na alteração de quantidade do produto');
         setLoading(false);
-
         return;
       }
 
-      cart.map(product => {
+      carts.map(product => {
         return product.id === productId
           ? updatedProduct(product, qtd)
           : product;
