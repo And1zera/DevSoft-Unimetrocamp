@@ -35,7 +35,7 @@ export function Login(): JSX.Element {
         <h2>LOGIN</h2>
 
         <input
-          type="text"
+          type="email"
           placeholder="E-mail"
           value={email}
           onChange={event => setEmail(event.target.value)}
