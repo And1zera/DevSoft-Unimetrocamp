@@ -1,0 +1,16 @@
+AVALIAÇÃO
+----------
+
+
+T-01 ( 2.0 pontos )
+
+Nota.... 1.25 pts
+
+
+Descritivo de Casos de uso poderia ter o número do Caso de Uso ( exemplo, UC05 Comprar Bilhete ), para facilitar identificação no diagrama
+
+Nomes dos Casos de Uso no descritivo estão diferentes dos nomes no diagrama ( exemplo, no descritivo está Login, no diagrama está UC02 - Fazer Login
+
+Alguns Casos de uso aparecem no descritivo, porém nã aparecem no Diagrama ( exemplo: Informar RG Participates )
+
+Somente 1 diagrama de sequencia foi entregue.
