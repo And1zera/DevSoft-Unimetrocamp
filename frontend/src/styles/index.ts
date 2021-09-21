@@ -63,7 +63,7 @@ export const GlobalStyle = createGlobalStyle`
         justify-content: center;
     }
 
-    .react-modal-content {
+    .react-modal-content-login {
         width: 100%;
         max-width: 400px;
         background: #fafafa;
@@ -85,6 +85,20 @@ export const GlobalStyle = createGlobalStyle`
 
         &:hover {
             filter: brightness(0.8);
+        }
+    }
+
+    .react-modal-content {
+        max-width: 550px;
+        width: 100%;
+        background: #fafafa;
+        padding: 3rem 1.5rem;
+        position: relative;
+        border-radius: 0.25rem;
+        max-height: 500px;
+        overflow-x: auto;
+        ::-webkit-scrollbar {
+          width: 0px;
         }
     }
 `;

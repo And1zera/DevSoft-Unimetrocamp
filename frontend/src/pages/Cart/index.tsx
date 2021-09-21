@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   MdAddCircleOutline,
   MdDelete,
@@ -7,6 +7,7 @@ import {
 import { toast } from 'react-toastify';
 import { Header } from '../../components/Header';
 import { Loading } from '../../components/Loading';
+import { Participants } from '../../components/Participants';
 import { useCart } from '../../hooks/useCart';
 import { Product } from '../../interfaces';
 import { api } from '../../services/api';
@@ -21,6 +22,7 @@ export function Cart(): JSX.Element {
     loading,
     cart,
   } = useCart();
+  const [isOpen, setIsOpenModal] = useState(false);
 
   const loadProducts = useCallback(async () => {
     try {
@@ -70,6 +72,14 @@ export function Cart(): JSX.Element {
     removeProduct(productId);
   };
 
+  const handleOpenModal = () => {
+    setIsOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpenModal(false);
+  };
+
   return (
     <>
       <Loading loading={loading} />
@@ -101,7 +111,11 @@ export function Cart(): JSX.Element {
                     <span>Inteira: {product.fullPriceFormatted}</span>
                     <span>Meia: {product.halfPriceFormatted}</span>
                   </div>
-                  <button type="button" className="btn-modal">
+                  <button
+                    type="button"
+                    className="btn-modal"
+                    onClick={handleOpenModal}
+                  >
                     Informar Participantes
                   </button>
                   <button type="button" className="btn-modal">
@@ -150,6 +164,8 @@ export function Cart(): JSX.Element {
             <strong>{total}</strong>
           </Total>
         </footer>
+
+        <Participants isOpen={isOpen} onCloseModal={handleCloseModal} />
       </Container>
     </>
   );

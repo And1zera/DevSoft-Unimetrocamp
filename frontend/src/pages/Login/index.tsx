@@ -21,7 +21,7 @@ export function Login(): JSX.Element {
       isOpen={isOpenModal}
       onRequestClose={handleCloseModalAndClearStates}
       overlayClassName="react-modal-overlay"
-      className="react-modal-content"
+      className="react-modal-content-login"
     >
       <button
         type="button"

@@ -15,14 +15,14 @@ Modal.setAppElement('#root');
 export function App(): JSX.Element {
   return (
     <Router>
-      <ModalProvider>
-        <CartProvider>
+      <CartProvider>
+        <ModalProvider>
           <GlobalStyle />
           <Routes />
           <ToastContainer autoClose={3000} />
-        </CartProvider>
-        <Login />
-      </ModalProvider>
+          <Login />
+        </ModalProvider>
+      </CartProvider>
     </Router>
   );
 }

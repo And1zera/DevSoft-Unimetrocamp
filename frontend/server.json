@@ -61,5 +61,17 @@
       "location": "Shopping Dom Pedro"
     }
   ],
-  "shoppingCart": []
+  "shoppingCart": [
+    {
+      "id": 1,
+      "title": "Homem aranha | sem volta para casa",
+      "fullPrice": 50,
+      "halfPrice": 25,
+      "amount": 25,
+      "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
+      "date": "15/09/2021",
+      "location": "Shopping Dom Pedro",
+      "qtd": 1
+    }
+  ]
 }
