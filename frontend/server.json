@@ -1,66 +1,65 @@
 {
-
-  "products":[
+  "products": [
     {
-      "id":1,
+      "id": 1,
       "title": "Homem aranha | sem volta para casa",
-      "fullPrice": 50.00,
-      "halfPrice": 25.00,
+      "fullPrice": 50,
+      "halfPrice": 25,
       "amount": 25,
       "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
       "date": "15/09/2021",
       "location": "Shopping Dom Pedro"
     },
     {
-      "id":2,
+      "id": 2,
       "title": "The Witcher 2",
-      "fullPrice": 100.00,
-      "halfPrice": 50.00,
+      "fullPrice": 100,
+      "halfPrice": 50,
       "amount": 5,
       "image": "https://mixdeseries.com.br/wp-content/uploads/2019/12/The-Witcher-2-temporada.jpg",
       "date": "28/11/2021",
       "location": "Campinas Shopping"
     },
     {
-      "id":3,
+      "id": 3,
       "title": "Mulan | live action",
-      "fullPrice": 20.00,
-      "halfPrice": 10.00,
+      "fullPrice": 20,
+      "halfPrice": 10,
       "amount": 3,
       "image": "https://media.hugogloss.uol.com.br/uploads/2019/07/primeiro-trailer-mulan.jpg",
       "date": "10/10/2021",
       "location": "Campinas Shopping"
     },
     {
-      "id":4,
+      "id": 4,
       "title": "Viúva Negra | Marvel Studios",
-      "fullPrice": 60.00,
-      "halfPrice": 30.00,
+      "fullPrice": 60,
+      "halfPrice": 30,
       "amount": 25,
       "image": "https://lumiere-a.akamaihd.net/v1/images/1920x1080_logo_d3a5a5f4.png",
       "date": "19/12/2021",
       "location": "Shopping Bandeiras"
     },
     {
-      "id":5,
+      "id": 5,
       "title": "John Wick 4",
-      "fullPrice": 22.60,
-      "halfPrice": 11.30,
+      "fullPrice": 22.6,
+      "halfPrice": 11.3,
       "amount": 8,
       "image": "https://www.filmes2021.com/wp-content/uploads/2020/03/John-Wick-4.jpg",
       "date": "28/09/2021",
       "location": "Shopping Bandeiras"
     },
     {
-      "id":6,
+      "id": 6,
       "title": "Luca | Disney Pixar",
-      "fullPrice": 100.40,
-      "halfPrice": 50.20,
+      "fullPrice": 100.4,
+      "halfPrice": 50.2,
       "amount": 25,
       "image": "https://teoriageek.com.br/wp-content/uploads/2021/06/Luca-Banner-1024x576-1.jpg",
       "date": "12/09/2021",
       "location": "Shopping Dom Pedro"
     }
-  ]
-
+  ],
+  "shoppingCart": []
 }

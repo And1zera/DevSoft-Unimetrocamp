@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Product } from '../interfaces';
 import { api } from '../services/api';
@@ -17,70 +17,95 @@ interface CartContextData {
   addProduct: (productId: number) => void;
   removeProduct: (productId: number) => void;
   updatedProductAmount: ({ productId, qtd }: UpdatedProductAmount) => void;
+  loadShoppingCart: (product: Product[]) => void;
+  loading: boolean;
+  handleLoading: (loading: boolean) => void;
 }
 
 const CartContext = createContext({} as CartContextData);
 
 export function CartProvider({ children }: CartProviderProps): JSX.Element {
-  const [cart, setCart] = useState<Product[]>(() => {
-    const storagedCart = localStorage.getItem('cart');
-    if (storagedCart) {
-      return JSON.parse(storagedCart);
-    }
-    return [];
-  });
+  const [cart, setCart] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const loadShoppingCart = useCallback((products: Product[]) => {
+    setCart(products);
+  }, []);
+
+  const handleLoading = useCallback((loading: boolean) => {
+    setLoading(loading);
+  }, []);
+
+  const updatedProduct = useCallback(async (product: Product, qtd: number) => {
+    await api.put<Product[]>(`/shoppingCart/${product.id}`, {
+      ...product,
+      qtd,
+    });
+
+    const { data } = await api.get<Product[]>('/shoppingCart');
+
+    setCart([...data]);
+  }, []);
 
   const addProduct = async (productId: number) => {
     try {
+      setLoading(true);
+
       const productAlreadyInCart = cart.find(
         product => product.id === productId
       );
+
       const { data: product } = await api.get<Product>(
         `/products/${productId}`
       );
 
       if (!productAlreadyInCart && product.amount > 0) {
-        setCart([...cart, { ...product, qtd: 1 }]);
-        localStorage.setItem(
-          'cart',
-          JSON.stringify([...cart, { ...product, qtd: 1 }])
-        );
+        const { data } = await api.post('/shoppingCart', {
+          ...product,
+          qtd: 1,
+        });
+        setCart([...cart, { ...data, qtd: 1 }]);
         toast.success('Produto adicionado ao carrinho');
+        setLoading(false);
         return;
       }
 
-      if (productAlreadyInCart && product.amount > productAlreadyInCart.qtd) {
-        const updatedCart = cart.map(product =>
-          product.id === productId
-            ? { ...product, qtd: Number(product.qtd + 1) }
-            : product
-        );
-        setCart(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-        toast.success('Produto adicionado ao carrinho');
-      } else {
+      if (productAlreadyInCart && product.amount <= productAlreadyInCart.qtd) {
         toast.error('Quantidade solicitada fora de estoque');
+        setLoading(false);
+        return;
       }
+
+      cart.map(product => {
+        return product.id === productId
+          ? updatedProduct(product, Number(product.qtd + 1))
+          : product;
+      });
+      setLoading(false);
+      toast.success('Produto adicionado ao carrinho');
     } catch (err) {
+      setLoading(false);
       toast.error('Erro na adição do produto');
     }
   };
 
-  const removeProduct = (productId: number) => {
+  const removeProduct = async (productId: number) => {
+    setLoading(true);
     try {
-      const productExistInCart = cart.some(product => product.id === productId);
-
+      const productExistInCart = cart.find(product => product.id === productId);
       if (!productExistInCart) {
         toast.error('Erro na remoção do produto');
+        setLoading(false);
         return;
       }
-
-      const updatedProduct = cart.filter(product => product.id !== productId);
-      setCart(updatedProduct);
-      localStorage.setItem('cart', JSON.stringify(updatedProduct));
+      await api.delete<Product>(`/shoppingCart/${productExistInCart.id}`);
+      const { data: products } = await api.get<Product[]>('/shoppingCart');
+      setCart(products);
       toast.success('Produto removido');
+      setLoading(false);
     } catch (err) {
       toast.error('Erro na remoção do produto');
+      setLoading(false);
     }
   };
 
@@ -89,46 +114,56 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     qtd,
   }: UpdatedProductAmount) => {
     try {
+      setLoading(true);
       if (qtd < 1) {
         toast.error('Erro na alteração de quantidade do produto');
+        setLoading(false);
+
         return;
       }
-
-      const { data } = await api.get(`/products/${productId}`);
-      const productAmount = data.amount;
+      const { data: products } = await api.get(`/products/${productId}`);
+      const { data: carts } = await api.get<Product[]>('/shoppingCart');
+      const productAmount = products.amount;
       const stockNoExistInProduct = qtd > productAmount;
 
       if (stockNoExistInProduct) {
         toast.error('Quantidade solicitada fora de estoque');
+        setLoading(false);
         return;
       }
 
-      const productExistInCart = cart.some(product => product.id === productId);
-
+      const productExistInCart = carts.find(
+        product => product.id === productId
+      );
       if (!productExistInCart) {
         toast.error('Erro na alteração de quantidade do produto');
+        setLoading(false);
         return;
       }
 
-      const updatedProduct = cart.map(product =>
-        product.id === productId
-          ? {
-              ...product,
-              qtd,
-            }
-          : product
-      );
-
-      setCart(updatedProduct);
-      localStorage.setItem('cart', JSON.stringify(updatedProduct));
+      carts.map(product => {
+        return product.id === productId
+          ? updatedProduct(product, qtd)
+          : product;
+      });
+      setLoading(false);
     } catch (err) {
       toast.error('Erro na alteração de quantidade do produto');
+      setLoading(false);
     }
   };
 
   return (
     <CartContext.Provider
-      value={{ cart, addProduct, removeProduct, updatedProductAmount }}
+      value={{
+        cart,
+        addProduct,
+        removeProduct,
+        updatedProductAmount,
+        loadShoppingCart,
+        loading,
+        handleLoading,
+      }}
     >
       {children}
     </CartContext.Provider>

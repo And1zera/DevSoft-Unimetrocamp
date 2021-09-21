@@ -1,17 +1,39 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
   MdAddCircleOutline,
   MdDelete,
   MdRemoveCircleOutline,
 } from 'react-icons/md';
+import { toast } from 'react-toastify';
 import { Header } from '../../components/Header';
+import { Loading } from '../../components/Loading';
 import { useCart } from '../../hooks/useCart';
 import { Product } from '../../interfaces';
+import { api } from '../../services/api';
 import { formatPrice } from '../../utils/format';
 import { Container, ProductTable, Total, Back } from './styles';
 
 export function Cart(): JSX.Element {
-  const { cart, removeProduct, updatedProductAmount } = useCart();
+  const {
+    removeProduct,
+    updatedProductAmount,
+    loadShoppingCart,
+    loading,
+    cart,
+  } = useCart();
+
+  const loadProducts = useCallback(async () => {
+    try {
+      const { data } = await api.get('/shoppingCart');
+      loadShoppingCart(data);
+    } catch (e) {
+      toast.error('Erro ao obter os dados');
+    }
+  }, [loadShoppingCart]);
+
+  useEffect(() => {
+    loadProducts();
+  }, [loadProducts]);
 
   const cartFormatted = cart.map(product => ({
     ...product,
@@ -50,6 +72,7 @@ export function Cart(): JSX.Element {
 
   return (
     <>
+      <Loading loading={loading} />
       <Header isColorActive>
         <Back to="/bilhet/events" className="back">
           Lista de Eventos
