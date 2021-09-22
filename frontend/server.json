@@ -71,7 +71,35 @@
       "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
       "date": "15/09/2021",
       "location": "Shopping Dom Pedro",
+      "qtd": 2
+    },
+    {
+      "id": 2,
+      "title": "The Witcher 2",
+      "fullPrice": 100,
+      "halfPrice": 50,
+      "amount": 5,
+      "image": "https://mixdeseries.com.br/wp-content/uploads/2019/12/The-Witcher-2-temporada.jpg",
+      "date": "28/11/2021",
+      "location": "Campinas Shopping",
       "qtd": 1
+    }
+  ],
+  "participants": [
+    {
+      "rg": "478112",
+      "id": 433,
+      "eventId": 1
+    },
+    {
+      "rg": "458962",
+      "id": 917,
+      "eventId": 1
+    },
+    {
+      "rg": "12569",
+      "id": 600,
+      "eventId": 2
     }
   ]
 }

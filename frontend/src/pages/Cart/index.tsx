@@ -9,10 +9,12 @@ import { Header } from '../../components/Header';
 import { Loading } from '../../components/Loading';
 import { Participants } from '../../components/Participants';
 import { useCart } from '../../hooks/useCart';
-import { Product } from '../../interfaces';
+import { Product, Participant } from '../../interfaces';
 import { api } from '../../services/api';
 import { formatPrice } from '../../utils/format';
 import { Container, ProductTable, Total, Back } from './styles';
+
+const INPUT_QTD_PARTICIPANTS: Participant[] = [];
 
 export function Cart(): JSX.Element {
   const {
@@ -23,6 +25,7 @@ export function Cart(): JSX.Element {
     cart,
   } = useCart();
   const [isOpen, setIsOpenModal] = useState(false);
+  const [rgParticipants, setRgParticipants] = useState<Participant[]>([]);
 
   const loadProducts = useCallback(async () => {
     try {
@@ -72,12 +75,30 @@ export function Cart(): JSX.Element {
     removeProduct(productId);
   };
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (product: Product) => {
     setIsOpenModal(true);
+    for (let i = 0; i < product.qtd; i += 1) {
+      const participants = {
+        eventId: product.id,
+        qtd: product.qtd,
+        RG: '',
+        index: i,
+        codigo: 0,
+      };
+      INPUT_QTD_PARTICIPANTS.push(participants);
+    }
+    setRgParticipants(INPUT_QTD_PARTICIPANTS);
   };
 
   const handleCloseModal = () => {
     setIsOpenModal(false);
+    rgParticipants.map(participants => {
+      for (let i = 0; i < participants.qtd; i += 1) {
+        INPUT_QTD_PARTICIPANTS.pop();
+      }
+      return 0;
+    });
+    setRgParticipants(INPUT_QTD_PARTICIPANTS);
   };
 
   return (
@@ -114,7 +135,7 @@ export function Cart(): JSX.Element {
                   <button
                     type="button"
                     className="btn-modal"
-                    onClick={handleOpenModal}
+                    onClick={() => handleOpenModal(product)}
                   >
                     Informar Participantes
                   </button>
@@ -165,7 +186,12 @@ export function Cart(): JSX.Element {
           </Total>
         </footer>
 
-        <Participants isOpen={isOpen} onCloseModal={handleCloseModal} />
+        <Participants
+          isOpen={isOpen}
+          onCloseModal={handleCloseModal}
+          rgParticipants={rgParticipants}
+          onRgParticipants={setRgParticipants}
+        />
       </Container>
     </>
   );
