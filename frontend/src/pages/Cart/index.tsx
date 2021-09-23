@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { Header } from '../../components/Header';
 import { Loading } from '../../components/Loading';
 import { Participants } from '../../components/Participants';
+import { Payment } from '../../components/Payment';
 import { useCart } from '../../hooks/useCart';
 import { Product, Participant } from '../../interfaces';
 import { api } from '../../services/api';
@@ -75,17 +76,19 @@ export function Cart(): JSX.Element {
     removeProduct(productId);
   };
 
-  const handleOpenModal = (product: Product) => {
+  const handleOpenModal = (product?: Product) => {
     setIsOpenModal(true);
-    for (let i = 0; i < product.qtd; i += 1) {
-      const participants = {
-        eventId: product.id,
-        qtd: product.qtd,
-        RG: '',
-        index: i,
-        codigo: 0,
-      };
-      INPUT_QTD_PARTICIPANTS.push(participants);
+    if (product) {
+      for (let i = 0; i < product.qtd; i += 1) {
+        const participants = {
+          eventId: product?.id,
+          qtd: product?.qtd,
+          RG: '',
+          index: i,
+          codigo: 0,
+        };
+        INPUT_QTD_PARTICIPANTS.push(participants);
+      }
     }
     setRgParticipants(INPUT_QTD_PARTICIPANTS);
   };
@@ -139,9 +142,6 @@ export function Cart(): JSX.Element {
                   >
                     Informar Participantes
                   </button>
-                  <button type="button" className="btn-modal">
-                    Forma de Pagamento
-                  </button>
                 </td>
                 <td>
                   <div>
@@ -179,6 +179,13 @@ export function Cart(): JSX.Element {
 
         <footer>
           <button type="button">Finalizar pedido</button>
+          <button
+            type="button"
+            className="btn-modal"
+            onClick={() => setIsOpenModal(true)}
+          >
+            Forma de Pagamento
+          </button>
 
           <Total>
             <span>TOTAL</span>
@@ -192,6 +199,7 @@ export function Cart(): JSX.Element {
           rgParticipants={rgParticipants}
           onRgParticipants={setRgParticipants}
         />
+        <Payment isOpen={isOpen} onCloseModal={handleCloseModal} />
       </Container>
     </>
   );

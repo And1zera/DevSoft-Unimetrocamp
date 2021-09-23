@@ -83,6 +83,17 @@
       "date": "28/11/2021",
       "location": "Campinas Shopping",
       "qtd": 1
+    },
+    {
+      "id": 5,
+      "title": "John Wick 4",
+      "fullPrice": 22.6,
+      "halfPrice": 11.3,
+      "amount": 8,
+      "image": "https://www.filmes2021.com/wp-content/uploads/2020/03/John-Wick-4.jpg",
+      "date": "28/09/2021",
+      "location": "Shopping Bandeiras",
+      "qtd": 1
     }
   ],
   "participants": [
@@ -100,6 +111,31 @@
       "rg": "12569",
       "id": 600,
       "eventId": 2
+    },
+    {
+      "rg": "123458",
+      "id": 1281,
+      "eventId": 2
+    }
+  ],
+  "Payment": [
+    {
+      "cpf": "478",
+      "month": "08",
+      "year": "2021",
+      "cvv": "123",
+      "numberCard": "123",
+      "customer": "ketile",
+      "id": 1
+    },
+    {
+      "cpf": "4781",
+      "month": "05",
+      "year": "2022",
+      "cvv": "1",
+      "numberCard": "123456",
+      "customer": "123",
+      "id": 2
     }
   ]
 }
