@@ -1,0 +1,12 @@
+C:\Github\backend\Bilhet.Application\bin\Debug\netcoreapp3.1\Bilhet.Application.deps.json
+C:\Github\backend\Bilhet.Application\bin\Debug\netcoreapp3.1\Bilhet.Application.dll
+C:\Github\backend\Bilhet.Application\bin\Debug\netcoreapp3.1\Bilhet.Application.pdb
+C:\Github\backend\Bilhet.Application\bin\Debug\netcoreapp3.1\Bilhet.Domain.dll
+C:\Github\backend\Bilhet.Application\bin\Debug\netcoreapp3.1\Bilhet.Domain.pdb
+C:\Github\backend\Bilhet.Application\obj\Debug\netcoreapp3.1\Bilhet.Application.csprojAssemblyReference.cache
+C:\Github\backend\Bilhet.Application\obj\Debug\netcoreapp3.1\Bilhet.Application.AssemblyInfoInputs.cache
+C:\Github\backend\Bilhet.Application\obj\Debug\netcoreapp3.1\Bilhet.Application.AssemblyInfo.cs
+C:\Github\backend\Bilhet.Application\obj\Debug\netcoreapp3.1\Bilhet.Application.csproj.CoreCompileInputs.cache
+C:\Github\backend\Bilhet.Application\obj\Debug\netcoreapp3.1\Bilhet.Application.csproj.CopyComplete
+C:\Github\backend\Bilhet.Application\obj\Debug\netcoreapp3.1\Bilhet.Application.dll
+C:\Github\backend\Bilhet.Application\obj\Debug\netcoreapp3.1\Bilhet.Application.pdb
