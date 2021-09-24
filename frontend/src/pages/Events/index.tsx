@@ -1,5 +1,10 @@
 import React from 'react';
-import { MdShoppingBasket } from 'react-icons/md';
+import {
+  MdBuild,
+  MdSettingsBackupRestore,
+  MdShoppingBasket,
+} from 'react-icons/md';
+import { Card } from '../../components/Card';
 import { EventList } from '../../components/EventList';
 import { Header } from '../../components/Header';
 import { useCart } from '../../hooks/useCart';
@@ -10,17 +15,31 @@ export function Events(): JSX.Element {
   const cartSize = cart.length;
   return (
     <>
-      <Header isColorActive>
+      <Header isColorActive />
+      <Card>
         <Cart to="/bilhet/cart">
+          <MdShoppingBasket size={36} color="var(--body)" />
           <div>
             <strong>Meu Carrinho</strong>
-            <span data-testid="cart-size">
+            <span>
               {cartSize === 1 ? `${cartSize} item` : `${cartSize} itens`}
             </span>
           </div>
-          <MdShoppingBasket size={36} color="#FFF" />
         </Cart>
-      </Header>
+        <Cart to="/bilhet/trocar-bilhete">
+          <MdBuild size={26} color="var(--body)" />
+          <div>
+            <strong>Trocar Bilhete</strong>
+          </div>
+        </Cart>
+
+        <Cart to="/bilhet/devolver-bilhete">
+          <MdSettingsBackupRestore size={26} color="var(--body)" />
+          <div>
+            <strong> Devolver Bilhete</strong>
+          </div>
+        </Cart>
+      </Card>
       <EventList />
     </>
   );
