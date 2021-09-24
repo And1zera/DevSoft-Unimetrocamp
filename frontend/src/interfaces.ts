@@ -9,7 +9,6 @@ export interface Product {
   amount: number;
   qtd: number;
   RG: string;
-  index: number;
 }
 
 export interface Participant {

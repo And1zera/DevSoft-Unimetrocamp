@@ -1,0 +1,15 @@
+C:\Github\backend\Bilhet.Application\bin\Debug\net5.0\Bilhet.Application.deps.json
+C:\Github\backend\Bilhet.Application\bin\Debug\net5.0\Bilhet.Application.dll
+C:\Github\backend\Bilhet.Application\bin\Debug\net5.0\ref\Bilhet.Application.dll
+C:\Github\backend\Bilhet.Application\bin\Debug\net5.0\Bilhet.Application.pdb
+C:\Github\backend\Bilhet.Application\bin\Debug\net5.0\Bilhet.Domain.dll
+C:\Github\backend\Bilhet.Application\bin\Debug\net5.0\Bilhet.Domain.pdb
+C:\Github\backend\Bilhet.Application\obj\Debug\net5.0\Bilhet.Application.csprojAssemblyReference.cache
+C:\Github\backend\Bilhet.Application\obj\Debug\net5.0\Bilhet.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Github\backend\Bilhet.Application\obj\Debug\net5.0\Bilhet.Application.AssemblyInfoInputs.cache
+C:\Github\backend\Bilhet.Application\obj\Debug\net5.0\Bilhet.Application.AssemblyInfo.cs
+C:\Github\backend\Bilhet.Application\obj\Debug\net5.0\Bilhet.Application.csproj.CoreCompileInputs.cache
+C:\Github\backend\Bilhet.Application\obj\Debug\net5.0\Bilhet.Application.csproj.CopyComplete
+C:\Github\backend\Bilhet.Application\obj\Debug\net5.0\Bilhet.Application.dll
+C:\Github\backend\Bilhet.Application\obj\Debug\net5.0\ref\Bilhet.Application.dll
+C:\Github\backend\Bilhet.Application\obj\Debug\net5.0\Bilhet.Application.pdb

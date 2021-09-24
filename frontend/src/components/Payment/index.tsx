@@ -13,26 +13,22 @@ export function Payment({
   onCloseModal,
   isOpen,
 }: ParticipantsProps): JSX.Element {
-  const [customer, setCustomer] = useState('');
-  const [cpf, setCPF] = useState('');
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
-  const [cvv, setCvv] = useState('');
-  const [numberCard, setNumberCard] = useState('');
+  const [dataBank, setDataBank] = useState({
+    customer: '',
+    cpf: '',
+    month: '',
+    year: '',
+    cvv: '',
+    numberCard: '',
+  });
 
-  const handleCloseModalAndClearStates = () => {
-    onCloseModal();
-  };
+  const id = Math.floor(Math.random() * 12056);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await api.post('/Payment', {
-      cpf,
-      month,
-      year,
-      cvv,
-      numberCard,
-      customer,
+    await api.post('/payment', {
+      id,
+      ...dataBank,
     });
     onCloseModal();
   };
@@ -40,14 +36,14 @@ export function Payment({
   return (
     <Modal
       isOpen={isOpen}
-      onRequestClose={handleCloseModalAndClearStates}
+      onRequestClose={onCloseModal}
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
     >
       <button
         type="button"
         className="react-modal-close"
-        onClick={handleCloseModalAndClearStates}
+        onClick={onCloseModal}
       >
         <img src={closeImg} alt="Fechar modal" />
       </button>
@@ -58,40 +54,46 @@ export function Payment({
             <input
               type="text"
               placeholder="Nome no cartão"
-              onChange={e => setCustomer(e.target.value)}
-              value={customer}
+              onChange={e =>
+                setDataBank({ ...dataBank, customer: e.target.value })
+              }
+              value={dataBank.customer}
             />
             <input
               type="text"
               placeholder="CPF"
-              onChange={e => setCPF(e.target.value)}
-              value={cpf}
+              onChange={e => setDataBank({ ...dataBank, cpf: e.target.value })}
+              value={dataBank.cpf}
             />
           </div>
           <input
             type="text"
             placeholder="Numero do cartão"
-            onChange={e => setNumberCard(e.target.value)}
-            value={numberCard}
+            onChange={e =>
+              setDataBank({ ...dataBank, numberCard: e.target.value })
+            }
+            value={dataBank.numberCard}
           />
           <div className="card__info">
             <input
               type="text"
               placeholder="MM"
-              onChange={e => setMonth(e.target.value)}
-              value={month}
+              onChange={e =>
+                setDataBank({ ...dataBank, month: e.target.value })
+              }
+              value={dataBank.month}
             />
             <input
               type="text"
               placeholder="AAAA"
-              onChange={e => setYear(e.target.value)}
-              value={year}
+              onChange={e => setDataBank({ ...dataBank, year: e.target.value })}
+              value={dataBank.year}
             />
             <input
               type="text"
               placeholder="Código de segurança"
-              onChange={e => setCvv(e.target.value)}
-              value={cvv}
+              onChange={e => setDataBank({ ...dataBank, cvv: e.target.value })}
+              value={dataBank.cvv}
             />
           </div>
 
