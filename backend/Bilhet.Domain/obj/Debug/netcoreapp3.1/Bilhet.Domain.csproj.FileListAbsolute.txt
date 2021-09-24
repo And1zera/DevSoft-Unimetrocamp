@@ -1,0 +1,9 @@
+C:\Github\backend\Bilhet.Domain\bin\Debug\netcoreapp3.1\Bilhet.Domain.deps.json
+C:\Github\backend\Bilhet.Domain\bin\Debug\netcoreapp3.1\Bilhet.Domain.dll
+C:\Github\backend\Bilhet.Domain\bin\Debug\netcoreapp3.1\Bilhet.Domain.pdb
+C:\Github\backend\Bilhet.Domain\obj\Debug\netcoreapp3.1\Bilhet.Domain.csprojAssemblyReference.cache
+C:\Github\backend\Bilhet.Domain\obj\Debug\netcoreapp3.1\Bilhet.Domain.AssemblyInfoInputs.cache
+C:\Github\backend\Bilhet.Domain\obj\Debug\netcoreapp3.1\Bilhet.Domain.AssemblyInfo.cs
+C:\Github\backend\Bilhet.Domain\obj\Debug\netcoreapp3.1\Bilhet.Domain.csproj.CoreCompileInputs.cache
+C:\Github\backend\Bilhet.Domain\obj\Debug\netcoreapp3.1\Bilhet.Domain.dll
+C:\Github\backend\Bilhet.Domain\obj\Debug\netcoreapp3.1\Bilhet.Domain.pdb

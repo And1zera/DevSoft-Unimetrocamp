@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bilhet.API", "Bilhet.API\Bilhet.API.csproj", "{71D2D6CD-56C9-4332-987C-5FEB9DE562CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A46FE253-5E9B-4BA3-A7AB-DB83C141AB98}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interface", "Interface", "{36122915-2721-4B65-98C7-7261CC8670CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{9EE72BB3-6A54-4774-A1EE-478C39497EEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bilhet.Application", "Bilhet.Application\Bilhet.Application.csproj", "{20A2ADAC-A172-4DA4-8A0C-A6D4EC9F0816}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bilhet.IoC", "Bilhet.IoC\Bilhet.IoC.csproj", "{8A51D197-06F2-435F-9AA9-A81FF739A5CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bilhet.Domain", "Bilhet.Domain\Bilhet.Domain.csproj", "{AC999BE0-C275-4214-838E-CD884C604F0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bilhet.Repository", "Bilhet.Repository\Bilhet.Repository.csproj", "{0FF9F7A5-3865-4D68-BFCA-B8B3D7F7C9E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71D2D6CD-56C9-4332-987C-5FEB9DE562CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D2D6CD-56C9-4332-987C-5FEB9DE562CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D2D6CD-56C9-4332-987C-5FEB9DE562CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D2D6CD-56C9-4332-987C-5FEB9DE562CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20A2ADAC-A172-4DA4-8A0C-A6D4EC9F0816}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20A2ADAC-A172-4DA4-8A0C-A6D4EC9F0816}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20A2ADAC-A172-4DA4-8A0C-A6D4EC9F0816}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20A2ADAC-A172-4DA4-8A0C-A6D4EC9F0816}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A51D197-06F2-435F-9AA9-A81FF739A5CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A51D197-06F2-435F-9AA9-A81FF739A5CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A51D197-06F2-435F-9AA9-A81FF739A5CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A51D197-06F2-435F-9AA9-A81FF739A5CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC999BE0-C275-4214-838E-CD884C604F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC999BE0-C275-4214-838E-CD884C604F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC999BE0-C275-4214-838E-CD884C604F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC999BE0-C275-4214-838E-CD884C604F0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FF9F7A5-3865-4D68-BFCA-B8B3D7F7C9E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FF9F7A5-3865-4D68-BFCA-B8B3D7F7C9E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FF9F7A5-3865-4D68-BFCA-B8B3D7F7C9E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF9F7A5-3865-4D68-BFCA-B8B3D7F7C9E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{71D2D6CD-56C9-4332-987C-5FEB9DE562CF} = {36122915-2721-4B65-98C7-7261CC8670CF}
+		{20A2ADAC-A172-4DA4-8A0C-A6D4EC9F0816} = {A46FE253-5E9B-4BA3-A7AB-DB83C141AB98}
+		{8A51D197-06F2-435F-9AA9-A81FF739A5CD} = {A46FE253-5E9B-4BA3-A7AB-DB83C141AB98}
+		{AC999BE0-C275-4214-838E-CD884C604F0B} = {A46FE253-5E9B-4BA3-A7AB-DB83C141AB98}
+		{0FF9F7A5-3865-4D68-BFCA-B8B3D7F7C9E0} = {9EE72BB3-6A54-4774-A1EE-478C39497EEC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DEB24C06-B0D2-4B92-BB1D-BDE51EE65ECF}
+	EndGlobalSection
+EndGlobal
