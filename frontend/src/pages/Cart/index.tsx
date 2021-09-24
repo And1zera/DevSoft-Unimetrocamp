@@ -76,6 +76,17 @@ export function Cart(): JSX.Element {
     setId(productId);
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    try {
+      e.preventDefault();
+      const { data: payment } = await api.get('/payment');
+      await api.post('/checkout', { payment, products: cart });
+      toast.success('Venda finalizada!');
+    } catch (err) {
+      toast.error('Erro ao finalizar compra');
+    }
+  };
+
   return (
     <>
       <Loading loading={loading} />
@@ -93,7 +104,9 @@ export function Cart(): JSX.Element {
           cart={cartFormatted}
         />
         <footer>
-          <button type="button">Finalizar pedido</button>
+          <button type="button" onClick={handleSubmit}>
+            Finalizar pedido
+          </button>
           <button
             type="button"
             className="btn-modal"

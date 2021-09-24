@@ -112,5 +112,60 @@
       "numberCard": "123456"
     }
   ],
-  "createTicket": []
+  "checkout": [
+    {
+      "payment": [
+        {
+          "id": 4010,
+          "customer": "Jessica",
+          "cpf": "47852106523",
+          "month": "11",
+          "year": "21",
+          "cvv": "1235",
+          "numberCard": "123456"
+        }
+      ],
+      "products": [
+        {
+          "id": 2,
+          "title": "The Witcher 2",
+          "fullPrice": 100,
+          "halfPrice": 50,
+          "amount": 5,
+          "image": "https://mixdeseries.com.br/wp-content/uploads/2019/12/The-Witcher-2-temporada.jpg",
+          "date": "28/11/2021",
+          "location": "Campinas Shopping",
+          "qtd": 1,
+          "halfPriceFormatted": "R$ 50,00",
+          "fullPriceFormatted": "R$ 100,00",
+          "subTotal": "R$ 100,00",
+          "rgs": [
+            {
+              "rg": "4785213695"
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "title": "Homem aranha | sem volta para casa",
+          "fullPrice": 50,
+          "halfPrice": 25,
+          "amount": 25,
+          "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
+          "date": "15/09/2021",
+          "location": "Shopping Dom Pedro",
+          "qtd": 2,
+          "rgs": [
+            {
+              "rg": "1254789252"
+            },
+            {
+              "rg": "6698774223"
+            }
+          ]
+        }
+      ],
+      "id": 1
+    }
+  ]
 }
