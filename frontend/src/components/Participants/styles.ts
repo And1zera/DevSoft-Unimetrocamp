@@ -25,6 +25,37 @@ export const Content = styled.section`
     margin-bottom: 3rem;
   }
 
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .bnt-add-rg {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    color: #228b22;
+    border: 2px solid #228b22;
+    border-radius: 0.25rem;
+    padding: 0 2rem;
+    height: 3rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    transition: all 0.2s;
+
+    svg {
+      margin-right: 1rem;
+      transition: all 0.2s;
+    }
+
+    :hover {
+      filter: brightness(0.7);
+    }
+  }
+
   input {
     width: 100%;
     height: 3.5rem;

@@ -63,17 +63,6 @@
   ],
   "shoppingCart": [
     {
-      "id": 1,
-      "title": "Homem aranha | sem volta para casa",
-      "fullPrice": 50,
-      "halfPrice": 25,
-      "amount": 25,
-      "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
-      "date": "15/09/2021",
-      "location": "Shopping Dom Pedro",
-      "qtd": 2
-    },
-    {
       "id": 2,
       "title": "The Witcher 2",
       "fullPrice": 100,
@@ -82,60 +71,46 @@
       "image": "https://mixdeseries.com.br/wp-content/uploads/2019/12/The-Witcher-2-temporada.jpg",
       "date": "28/11/2021",
       "location": "Campinas Shopping",
-      "qtd": 1
+      "qtd": 1,
+      "halfPriceFormatted": "R$ 50,00",
+      "fullPriceFormatted": "R$ 100,00",
+      "subTotal": "R$ 100,00",
+      "rgs": [
+        {
+          "rg": "4785213695"
+        }
+      ]
     },
     {
-      "id": 5,
-      "title": "John Wick 4",
-      "fullPrice": 22.6,
-      "halfPrice": 11.3,
-      "amount": 8,
-      "image": "https://www.filmes2021.com/wp-content/uploads/2020/03/John-Wick-4.jpg",
-      "date": "28/09/2021",
-      "location": "Shopping Bandeiras",
-      "qtd": 1
+      "id": 1,
+      "title": "Homem aranha | sem volta para casa",
+      "fullPrice": 50,
+      "halfPrice": 25,
+      "amount": 25,
+      "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
+      "date": "15/09/2021",
+      "location": "Shopping Dom Pedro",
+      "qtd": 2,
+      "rgs": [
+        {
+          "rg": "1254789252"
+        },
+        {
+          "rg": "6698774223"
+        }
+      ]
     }
   ],
-  "participants": [
+  "payment": [
     {
-      "rg": "478112",
-      "id": 433,
-      "eventId": 1
-    },
-    {
-      "rg": "458962",
-      "id": 917,
-      "eventId": 1
-    },
-    {
-      "rg": "12569",
-      "id": 600,
-      "eventId": 2
-    },
-    {
-      "rg": "123458",
-      "id": 1281,
-      "eventId": 2
+      "id": 4010,
+      "customer": "Jessica",
+      "cpf": "47852106523",
+      "month": "11",
+      "year": "21",
+      "cvv": "1235",
+      "numberCard": "123456"
     }
   ],
-  "Payment": [
-    {
-      "cpf": "478",
-      "month": "08",
-      "year": "2021",
-      "cvv": "123",
-      "numberCard": "123",
-      "customer": "ketile",
-      "id": 1
-    },
-    {
-      "cpf": "4781",
-      "month": "05",
-      "year": "2022",
-      "cvv": "1",
-      "numberCard": "123456",
-      "customer": "123",
-      "id": 2
-    }
-  ]
+  "createTicket": []
 }
