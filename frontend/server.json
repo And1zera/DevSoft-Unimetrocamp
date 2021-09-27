@@ -7,7 +7,7 @@
       "halfPrice": 25,
       "amount": 25,
       "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
-      "date": "15/09/2021",
+      "date": "2021-09-15",
       "location": "Shopping Dom Pedro"
     },
     {
@@ -17,7 +17,7 @@
       "halfPrice": 50,
       "amount": 5,
       "image": "https://mixdeseries.com.br/wp-content/uploads/2019/12/The-Witcher-2-temporada.jpg",
-      "date": "28/11/2021",
+      "date": "2021-11-28",
       "location": "Campinas Shopping"
     },
     {
@@ -27,7 +27,7 @@
       "halfPrice": 10,
       "amount": 3,
       "image": "https://media.hugogloss.uol.com.br/uploads/2019/07/primeiro-trailer-mulan.jpg",
-      "date": "10/10/2021",
+      "date": "2021-10-10",
       "location": "Campinas Shopping"
     },
     {
@@ -37,7 +37,7 @@
       "halfPrice": 30,
       "amount": 25,
       "image": "https://lumiere-a.akamaihd.net/v1/images/1920x1080_logo_d3a5a5f4.png",
-      "date": "19/12/2021",
+      "date": "2021-12-19",
       "location": "Shopping Bandeiras"
     },
     {
@@ -47,7 +47,7 @@
       "halfPrice": 11.3,
       "amount": 8,
       "image": "https://www.filmes2021.com/wp-content/uploads/2020/03/John-Wick-4.jpg",
-      "date": "28/09/2021",
+      "date": "2021-09-28",
       "location": "Shopping Bandeiras"
     },
     {
@@ -57,30 +57,11 @@
       "halfPrice": 50.2,
       "amount": 25,
       "image": "https://teoriageek.com.br/wp-content/uploads/2021/06/Luca-Banner-1024x576-1.jpg",
-      "date": "12/09/2021",
+      "date": "2021-09-12",
       "location": "Shopping Dom Pedro"
     }
   ],
   "shoppingCart": [
-    {
-      "id": 2,
-      "title": "The Witcher 2",
-      "fullPrice": 100,
-      "halfPrice": 50,
-      "amount": 5,
-      "image": "https://mixdeseries.com.br/wp-content/uploads/2019/12/The-Witcher-2-temporada.jpg",
-      "date": "28/11/2021",
-      "location": "Campinas Shopping",
-      "qtd": 1,
-      "halfPriceFormatted": "R$ 50,00",
-      "fullPriceFormatted": "R$ 100,00",
-      "subTotal": "R$ 100,00",
-      "rgs": [
-        {
-          "rg": "4785213695"
-        }
-      ]
-    },
     {
       "id": 1,
       "title": "Homem aranha | sem volta para casa",
@@ -88,27 +69,24 @@
       "halfPrice": 25,
       "amount": 25,
       "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
-      "date": "15/09/2021",
+      "date": "2021-02-15",
       "location": "Shopping Dom Pedro",
       "qtd": 2,
       "rgs": [
         {
-          "rg": "1254789252"
-        },
-        {
-          "rg": "6698774223"
+          "rg": "47811306824"
         }
       ]
     }
   ],
   "payment": [
     {
-      "id": 4010,
-      "customer": "Jessica",
-      "cpf": "47852106523",
+      "id": 8446,
+      "customer": "Jessica Silva",
+      "cpf": "4785662210",
       "month": "11",
-      "year": "21",
-      "cvv": "1235",
+      "year": "2021",
+      "cvv": "123",
       "numberCard": "123456"
     }
   ],
@@ -116,35 +94,16 @@
     {
       "payment": [
         {
-          "id": 4010,
-          "customer": "Jessica",
-          "cpf": "47852106523",
+          "id": 8446,
+          "customer": "Jessica Silva",
+          "cpf": "4785662210",
           "month": "11",
-          "year": "21",
-          "cvv": "1235",
+          "year": "2021",
+          "cvv": "123",
           "numberCard": "123456"
         }
       ],
       "products": [
-        {
-          "id": 2,
-          "title": "The Witcher 2",
-          "fullPrice": 100,
-          "halfPrice": 50,
-          "amount": 5,
-          "image": "https://mixdeseries.com.br/wp-content/uploads/2019/12/The-Witcher-2-temporada.jpg",
-          "date": "28/11/2021",
-          "location": "Campinas Shopping",
-          "qtd": 1,
-          "halfPriceFormatted": "R$ 50,00",
-          "fullPriceFormatted": "R$ 100,00",
-          "subTotal": "R$ 100,00",
-          "rgs": [
-            {
-              "rg": "4785213695"
-            }
-          ]
-        },
         {
           "id": 1,
           "title": "Homem aranha | sem volta para casa",
@@ -152,20 +111,17 @@
           "halfPrice": 25,
           "amount": 25,
           "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
-          "date": "15/09/2021",
+          "date": "15-09-2021",
           "location": "Shopping Dom Pedro",
           "qtd": 2,
           "rgs": [
             {
-              "rg": "1254789252"
-            },
-            {
-              "rg": "6698774223"
+              "rg": "47811306824"
             }
           ]
         }
       ],
-      "id": 1
+     "id": 1
     }
   ]
 }
