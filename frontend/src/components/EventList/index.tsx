@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
 import { useCart } from '../../hooks/useCart';
@@ -49,7 +50,9 @@ export function EventList(): JSX.Element {
               <strong>{product.title}</strong>
               <div className="information_bilhet">
                 <span>{product.location}</span>
-                <span className="date">{product.date}</span>
+                <span className="date">
+                  {format(new Date(product.date), 'dd/MM/yyyy')}
+                </span>
               </div>
               <div className="price">
                 <div className="priceType">
