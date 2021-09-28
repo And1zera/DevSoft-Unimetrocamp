@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "r+UBsOSr80G8EgOkOnvNNMlgVW9Af794kTyyfgn81bp93Mz++MTAQGxpEdMxk+gP/p5Imdy2QUDD/QgAvCWJ9A==",
+  "dgSpecHash": "Q2gVBDV1MmFK6p48NMCp19Vr5jPV9zXFlqrlt3K7YEYWv/gs/pqzK3XfrQWeA3QdkRfpKT4EOOT9pR5bEyzHNQ==",
   "success": true,
-  "projectFilePath": "C:\\Github\\backend\\Bilhet.API\\Bilhet.API.csproj",
+  "projectFilePath": "C:\\Github\\DevSoft-Unimetrocamp\\backend\\Bilhet.API\\Bilhet.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Anderson\\.nuget\\packages\\aspnetcore.healthchecks.sqlserver\\5.0.3\\aspnetcore.healthchecks.sqlserver.5.0.3.nupkg.sha512",
+    "C:\\Users\\Anderson\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\Anderson\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "C:\\Users\\Anderson\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\Anderson\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Anderson\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
@@ -101,7 +103,7 @@
     "C:\\Users\\Anderson\\.nuget\\packages\\system.net.sockets\\4.3.0\\system.net.sockets.4.3.0.nupkg.sha512",
     "C:\\Users\\Anderson\\.nuget\\packages\\system.objectmodel\\4.3.0\\system.objectmodel.4.3.0.nupkg.sha512",
     "C:\\Users\\Anderson\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
-    "C:\\Users\\Anderson\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512",
+    "C:\\Users\\Anderson\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\Anderson\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.3.0\\system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",
     "C:\\Users\\Anderson\\.nuget\\packages\\system.reflection.emit.lightweight\\4.3.0\\system.reflection.emit.lightweight.4.3.0.nupkg.sha512",
     "C:\\Users\\Anderson\\.nuget\\packages\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",

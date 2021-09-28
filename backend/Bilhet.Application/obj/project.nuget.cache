@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "m9xdQs1zT+JIoE2dqLlF8xxAKa52NC28a8f/dbC2uSoU4Z2VYIg0A8/dUoN1a2l5L+sjLijlWT+w5FCF+ZJt8g==",
+  "dgSpecHash": "y3UvNHMJJ9Z75G4y5mQQQu3OUSK9/KKF5DSCDnIdouJBvDN4Lu3Ud6B5lq0NYx6j/RgtXvtErleCJuBqYO7cww==",
   "success": true,
-  "projectFilePath": "C:\\Github\\backend\\Bilhet.Application\\Bilhet.Application.csproj",
+  "projectFilePath": "C:\\Github\\DevSoft-Unimetrocamp\\backend\\Bilhet.Application\\Bilhet.Application.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

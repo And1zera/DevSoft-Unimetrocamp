@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DGKTuYaPz8Wxa/AnMpk53bfezklCHUZPT6rL51J+AosD/yAINtdGSk921tmCgFivdRzgf0No4TjpIx4KyaJOrw==",
+  "dgSpecHash": "Lo+zyyB5j2J1vLeTRAdBOZlnibdlBk8iU4aOXyLtqOv3rec1HI9SguVZLimYAjLzXM8p/B4JLRaUNcSzvgEzWA==",
   "success": true,
-  "projectFilePath": "C:\\Github\\backend\\Bilhet.IoC\\Bilhet.IoC.csproj",
+  "projectFilePath": "C:\\Github\\DevSoft-Unimetrocamp\\backend\\Bilhet.IoC\\Bilhet.IoC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Anderson\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Anderson\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

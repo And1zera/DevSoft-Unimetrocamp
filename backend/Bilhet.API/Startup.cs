@@ -44,6 +44,7 @@ namespace Bilhet.API
             services.AddDatabaseConfiguration(Configuration);
             services.AddDependencyInjectionConfiguration(Configuration);
             services.AddHealthChecks().AddSqlServer(Configuration["ConnectionStrings:SQL"]);
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

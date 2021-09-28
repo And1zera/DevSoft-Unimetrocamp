@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Github\\backend\\Bilhet.Application\\Bilhet.Application.csproj",
+      "projectUniqueName": "C:\\Github\\DevSoft-Unimetrocamp\\backend\\Bilhet.Application\\Bilhet.Application.csproj",
       "projectName": "Bilhet.Application",
-      "projectPath": "C:\\Github\\backend\\Bilhet.Application\\Bilhet.Application.csproj",
+      "projectPath": "C:\\Github\\DevSoft-Unimetrocamp\\backend\\Bilhet.Application\\Bilhet.Application.csproj",
       "packagesPath": "C:\\Users\\Anderson\\.nuget\\packages\\",
-      "outputPath": "C:\\Github\\backend\\Bilhet.Application\\obj\\",
+      "outputPath": "C:\\Github\\DevSoft-Unimetrocamp\\backend\\Bilhet.Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Anderson\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Github\\backend\\Bilhet.Domain\\Bilhet.Domain.csproj": {
-              "projectPath": "C:\\Github\\backend\\Bilhet.Domain\\Bilhet.Domain.csproj"
+            "C:\\Github\\DevSoft-Unimetrocamp\\backend\\Bilhet.Domain\\Bilhet.Domain.csproj": {
+              "projectPath": "C:\\Github\\DevSoft-Unimetrocamp\\backend\\Bilhet.Domain\\Bilhet.Domain.csproj"
             }
           }
         }

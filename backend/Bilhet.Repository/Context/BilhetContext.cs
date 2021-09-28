@@ -1,3 +1,4 @@
+using Bilhet.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Reflection;
@@ -7,7 +8,7 @@ namespace Bilhet.Repository.Context
     public class BilhetContext : DbContext
     {
 
-        //public DbSet<Entity> Entity { get; set; }
+        public DbSet<Evento> Evento { get; set; }
         
 
         public BilhetContext(DbContextOptions<BilhetContext> options) : base(options)
