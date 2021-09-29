@@ -57,27 +57,31 @@
   ],
   "shoppingCart": [
     {
-      "id": 2,
-      "title": "The Witcher 2",
-      "fullPrice": 100,
-      "amount": 5,
-      "image": "https://mixdeseries.com.br/wp-content/uploads/2019/12/The-Witcher-2-temporada.jpg",
-      "date": "2021-11-28",
+      "id": 3,
+      "title": "Mulan | live action",
+      "fullPrice": 20,
+      "amount": 3,
+      "image": "https://media.hugogloss.uol.com.br/uploads/2019/07/primeiro-trailer-mulan.jpg",
+      "date": "2021-10-10",
       "location": "Campinas Shopping",
       "qtd": 1,
-      "rg": "47856633112"
+      "rg": "556699748"
     }
   ],
-  "payment": [
+  "payment": {
+    "id": 6285,
+    "customer": "Jessica",
+    "cpf": "152330022",
+    "month": "12",
+    "year": "2022",
+    "cvv": "156",
+    "numberCard": "556987"
+  },
+  "checkout": [
     {
-      "id": 7073,
-      "customer": "Jessica Silva",
-      "cpf": "47811256921",
-      "month": "06",
-      "year": "2022",
-      "cvv": "158",
-      "numberCard": "123456"
+      "id": 3,
+      "fullPrice": 10,
+      "rg": "556699748"
     }
-  ],
-  "checkout": []
+  ]
 }

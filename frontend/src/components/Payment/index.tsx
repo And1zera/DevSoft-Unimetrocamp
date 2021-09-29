@@ -7,11 +7,13 @@ import { Container, Content } from './styles';
 interface ParticipantsProps {
   onCloseModal: () => void;
   isOpen: boolean;
+  onIsPaymentDisabled: (value: boolean) => void;
 }
 
 export function Payment({
   onCloseModal,
   isOpen,
+  onIsPaymentDisabled,
 }: ParticipantsProps): JSX.Element {
   const [dataBank, setDataBank] = useState({
     customer: '',
@@ -30,6 +32,7 @@ export function Payment({
       id,
       ...dataBank,
     });
+    onIsPaymentDisabled(false);
     onCloseModal();
   };
 

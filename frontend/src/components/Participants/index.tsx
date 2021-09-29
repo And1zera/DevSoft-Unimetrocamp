@@ -10,12 +10,14 @@ interface ParticipantsProps {
   onCloseModal: () => void;
   isOpen: boolean;
   id: number;
+  onIsRgExist: (value: boolean) => void;
 }
 
 export function Participants({
   onCloseModal,
   isOpen,
   id,
+  onIsRgExist,
 }: ParticipantsProps): JSX.Element {
   const [rg, setRg] = useState('');
   const { cart, loadShoppingCart } = useCart();
@@ -29,6 +31,7 @@ export function Participants({
     });
     const { data } = await api.get('/shoppingCart');
     loadShoppingCart(data);
+    onIsRgExist(false);
     onCloseModal();
   };
 

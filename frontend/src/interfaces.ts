@@ -8,13 +8,5 @@ export interface Product {
   image: string;
   amount: number;
   qtd: number;
-  rgs: string;
-}
-
-export interface Participant {
-  RG: string;
-  eventId: number;
-  qtd: number;
-  index: number;
-  codigo: number;
+  rg: string;
 }

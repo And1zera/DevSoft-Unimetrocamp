@@ -6,6 +6,7 @@ import { Loading } from '../../components/Loading';
 import { Participants } from '../../components/Participants';
 import { Payment } from '../../components/Payment';
 import { useCart } from '../../hooks/useCart';
+import { Product } from '../../interfaces';
 import { api } from '../../services/api';
 import { formatPrice } from '../../utils/format';
 import { Container, Total, Back } from './styles';
@@ -14,6 +15,9 @@ export function Cart(): JSX.Element {
   const { removeProduct, loadShoppingCart, loading, cart } = useCart();
   const [isOpenParticipants, setIsOpenModalParticipants] = useState(false);
   const [isOpenPayment, setIsOpenModalPayment] = useState(false);
+  const [typeTicket, setTypeTicket] = useState('fullPrice');
+  const [isRgDisabled, setIsDisabled] = useState(true);
+  const [isPaymentDisabled, setIsPaymentDisabled] = useState(true);
   const [id, setId] = useState(0);
 
   const loadProducts = useCallback(async () => {
@@ -31,13 +35,20 @@ export function Cart(): JSX.Element {
 
   const cartFormatted = cart.map(product => ({
     ...product,
-    halfPriceFormatted: formatPrice(product.halfPrice),
+    halfPriceFormatted: formatPrice(product.fullPrice / 2),
     fullPriceFormatted: formatPrice(product.fullPrice),
-    subTotal: formatPrice(product.fullPrice * product.qtd),
+    subTotal:
+      typeTicket === 'halfPrice'
+        ? formatPrice((product.fullPrice / 2) * product.qtd)
+        : formatPrice(product.fullPrice * product.qtd),
   }));
 
   const total = formatPrice(
     cart.reduce((sumTotal, product) => {
+      if (typeTicket === 'halfPrice') {
+        sumTotal += (product.fullPrice / 2) * product.qtd;
+        return sumTotal;
+      }
       sumTotal += product.fullPrice * product.qtd;
       return sumTotal;
     }, 0)
@@ -55,8 +66,23 @@ export function Cart(): JSX.Element {
   const handleSubmit = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
-      const { data: payment } = await api.get('/payment');
-      await api.post('/checkout', { payment, products: cart });
+      const { data: carts } = await api.get<Product[]>('/shoppingCart');
+      carts.map(async product => {
+        if (typeTicket === 'halfPrice') {
+          const price = product.fullPrice / 2;
+          await api.post('/checkout', {
+            id: product.id,
+            fullPrice: price,
+            rg: product.rg,
+          });
+        } else {
+          await api.post('/checkout', {
+            id: product.id,
+            fullPrice: product.fullPrice,
+            rg: product.rg,
+          });
+        }
+      });
       toast.success('Venda finalizada!');
     } catch (err) {
       toast.error('Erro ao finalizar compra');
@@ -75,10 +101,15 @@ export function Cart(): JSX.Element {
         <CartList
           handleRemoveProduct={handleRemoveProduct}
           handleOpenModal={handleOpenModal}
+          onTypeTicket={setTypeTicket}
           cart={cartFormatted}
         />
         <footer>
-          <button type="button" onClick={handleSubmit}>
+          <button
+            type="button"
+            onClick={handleSubmit}
+            disabled={isRgDisabled || isPaymentDisabled}
+          >
             Finalizar pedido
           </button>
           <button
@@ -88,7 +119,6 @@ export function Cart(): JSX.Element {
           >
             Forma de Pagamento
           </button>
-
           <Total>
             <span>TOTAL</span>
             <strong>{total}</strong>
@@ -98,10 +128,12 @@ export function Cart(): JSX.Element {
         <Participants
           isOpen={isOpenParticipants}
           onCloseModal={() => setIsOpenModalParticipants(false)}
+          onIsRgExist={setIsDisabled}
           id={id}
         />
         <Payment
           isOpen={isOpenPayment}
+          onIsPaymentDisabled={setIsPaymentDisabled}
           onCloseModal={() => setIsOpenModalPayment(false)}
         />
       </Container>

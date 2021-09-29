@@ -13,12 +13,14 @@ interface CartListProps {
   cart: ProductFormatted[];
   handleOpenModal: (id: number) => void;
   handleRemoveProduct: (id: number) => void;
+  onTypeTicket: (value: string) => void;
 }
 
 export function CartList({
   cart,
   handleOpenModal,
   handleRemoveProduct,
+  onTypeTicket,
 }: CartListProps): JSX.Element {
   return (
     <ProductTable>
@@ -27,6 +29,7 @@ export function CartList({
           <th aria-label="product image" />
           <th>EVENTO</th>
           <th>QTD</th>
+          <th>Tipo do bilhete</th>
           <th>SUBTOTAL</th>
           <th aria-label="delete icon" />
         </tr>
@@ -55,6 +58,16 @@ export function CartList({
               <div>
                 <span>{product.qtd} UN</span>
               </div>
+            </td>
+            <td>
+              <select
+                name="optTypeTicket"
+                id="optTypeTicket"
+                onChange={e => onTypeTicket(e.target.value)}
+              >
+                <option value="fullPrice">INTEIRA</option>
+                <option value="halfPrice">MEIA</option>
+              </select>
             </td>
             <td>
               <strong>{product.subTotal}</strong>
