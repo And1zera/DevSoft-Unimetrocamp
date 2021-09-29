@@ -53,6 +53,19 @@ export const ProductTable = styled.table`
     }
   }
 
+  select {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #666;
+    padding: 6px;
+    width: 100px;
+    cursor: pointer;
+
+    option {
+      color: var(--text-title);
+    }
+  }
+
   .btn-modal {
     color: var(--body);
     font-size: 1rem;

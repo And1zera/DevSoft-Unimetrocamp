@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
+import { toast } from 'react-toastify';
 import { useCart } from '../../hooks/useCart';
 import { Product } from '../../interfaces';
 import { api } from '../../services/api';
@@ -36,6 +37,10 @@ export function EventList(): JSX.Element {
   }, [loadShoppingCart, handleLoading]);
 
   const handleAddProduct = (productId: number) => {
+    if (cart.length === 1) {
+      toast.warning('Já existe um produto no carrinho!');
+      return;
+    }
     addProduct(productId);
   };
 
@@ -61,7 +66,7 @@ export function EventList(): JSX.Element {
                 </div>
                 <div className="priceType">
                   <p>MEIA</p>
-                  <span>{formatPrice(product.halfPrice)}</span>
+                  <span>{formatPrice(product.fullPrice / 2)}</span>
                 </div>
               </div>
             </div>
