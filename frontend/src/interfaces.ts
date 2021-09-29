@@ -8,7 +8,7 @@ export interface Product {
   image: string;
   amount: number;
   qtd: number;
-  RG: string;
+  rgs: string;
 }
 
 export interface Participant {

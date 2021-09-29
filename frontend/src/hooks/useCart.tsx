@@ -7,16 +7,10 @@ interface CartProviderProps {
   children: React.ReactNode;
 }
 
-interface UpdatedProductAmount {
-  productId: number;
-  qtd: number;
-}
-
 interface CartContextData {
   cart: Product[];
   addProduct: (productId: number) => void;
   removeProduct: (productId: number) => void;
-  updatedProductAmount: ({ productId, qtd }: UpdatedProductAmount) => void;
   loadShoppingCart: (product: Product[]) => void;
   loading: boolean;
   handleLoading: (loading: boolean) => void;
@@ -34,17 +28,6 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
   const handleLoading = useCallback((loading: boolean) => {
     setLoading(loading);
-  }, []);
-
-  const updatedProduct = useCallback(async (product: Product, qtd: number) => {
-    await api.put<Product[]>(`/shoppingCart/${product.id}`, {
-      ...product,
-      qtd,
-    });
-
-    const { data } = await api.get<Product[]>('/shoppingCart');
-
-    setCart([...data]);
   }, []);
 
   const addProduct = async (productId: number) => {
@@ -76,13 +59,8 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         return;
       }
 
-      cart.map(product => {
-        return product.id === productId
-          ? updatedProduct(product, Number(product.qtd + 1))
-          : product;
-      });
+      toast.warning('Esse produto já existe no carrinho.');
       setLoading(false);
-      toast.success('Produto adicionado ao carrinho');
     } catch (err) {
       setLoading(false);
       toast.error('Erro na adição do produto');
@@ -109,57 +87,12 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     }
   };
 
-  const updatedProductAmount = async ({
-    productId,
-    qtd,
-  }: UpdatedProductAmount) => {
-    try {
-      setLoading(true);
-      if (qtd < 1) {
-        toast.error('Erro na alteração de quantidade do produto');
-        setLoading(false);
-
-        return;
-      }
-      const { data: products } = await api.get(`/products/${productId}`);
-      const { data: carts } = await api.get<Product[]>('/shoppingCart');
-      const productAmount = products.amount;
-      const stockNoExistInProduct = qtd > productAmount;
-
-      if (stockNoExistInProduct) {
-        toast.error('Quantidade solicitada fora de estoque');
-        setLoading(false);
-        return;
-      }
-
-      const productExistInCart = carts.find(
-        product => product.id === productId
-      );
-      if (!productExistInCart) {
-        toast.error('Erro na alteração de quantidade do produto');
-        setLoading(false);
-        return;
-      }
-
-      carts.map(product => {
-        return product.id === productId
-          ? updatedProduct(product, qtd)
-          : product;
-      });
-      setLoading(false);
-    } catch (err) {
-      toast.error('Erro na alteração de quantidade do produto');
-      setLoading(false);
-    }
-  };
-
   return (
     <CartContext.Provider
       value={{
         cart,
         addProduct,
         removeProduct,
-        updatedProductAmount,
         loadShoppingCart,
         loading,
         handleLoading,

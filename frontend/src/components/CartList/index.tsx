@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  MdAddCircleOutline,
-  MdDelete,
-  MdRemoveCircleOutline,
-} from 'react-icons/md';
+import { MdDelete } from 'react-icons/md';
 import { Product } from '../../interfaces';
 import { ProductTable } from './styles';
 
@@ -16,16 +12,12 @@ interface ProductFormatted extends Product {
 interface CartListProps {
   cart: ProductFormatted[];
   handleOpenModal: (id: number) => void;
-  handleProductDecrement: (product: Product) => void;
-  handleProductIncrement: (product: Product) => void;
   handleRemoveProduct: (id: number) => void;
 }
 
 export function CartList({
   cart,
   handleOpenModal,
-  handleProductDecrement,
-  handleProductIncrement,
   handleRemoveProduct,
 }: CartListProps): JSX.Element {
   return (
@@ -61,20 +53,7 @@ export function CartList({
             </td>
             <td>
               <div>
-                <button
-                  type="button"
-                  disabled={product.qtd <= 1}
-                  onClick={() => handleProductDecrement(product)}
-                >
-                  <MdRemoveCircleOutline size={20} />
-                </button>
-                <input type="text" readOnly value={product.qtd} />
-                <button
-                  type="button"
-                  onClick={() => handleProductIncrement(product)}
-                >
-                  <MdAddCircleOutline size={20} />
-                </button>
+                <span>{product.qtd} UN</span>
               </div>
             </td>
             <td>

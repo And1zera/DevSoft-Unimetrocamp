@@ -69,59 +69,11 @@
       "halfPrice": 25,
       "amount": 25,
       "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
-      "date": "2021-02-15",
+      "date": "2021-09-15",
       "location": "Shopping Dom Pedro",
-      "qtd": 2,
-      "rgs": [
-        {
-          "rg": "47811306824"
-        }
-      ]
+      "qtd": 1
     }
   ],
-  "payment": [
-    {
-      "id": 8446,
-      "customer": "Jessica Silva",
-      "cpf": "4785662210",
-      "month": "11",
-      "year": "2021",
-      "cvv": "123",
-      "numberCard": "123456"
-    }
-  ],
-  "checkout": [
-    {
-      "payment": [
-        {
-          "id": 8446,
-          "customer": "Jessica Silva",
-          "cpf": "4785662210",
-          "month": "11",
-          "year": "2021",
-          "cvv": "123",
-          "numberCard": "123456"
-        }
-      ],
-      "products": [
-        {
-          "id": 1,
-          "title": "Homem aranha | sem volta para casa",
-          "fullPrice": 50,
-          "halfPrice": 25,
-          "amount": 25,
-          "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
-          "date": "15-09-2021",
-          "location": "Shopping Dom Pedro",
-          "qtd": 2,
-          "rgs": [
-            {
-              "rg": "47811306824"
-            }
-          ]
-        }
-      ],
-     "id": 1
-    }
-  ]
+  "payment": [],
+  "checkout": []
 }

@@ -6,19 +6,12 @@ import { Loading } from '../../components/Loading';
 import { Participants } from '../../components/Participants';
 import { Payment } from '../../components/Payment';
 import { useCart } from '../../hooks/useCart';
-import { Product } from '../../interfaces';
 import { api } from '../../services/api';
 import { formatPrice } from '../../utils/format';
 import { Container, Total, Back } from './styles';
 
 export function Cart(): JSX.Element {
-  const {
-    removeProduct,
-    updatedProductAmount,
-    loadShoppingCart,
-    loading,
-    cart,
-  } = useCart();
+  const { removeProduct, loadShoppingCart, loading, cart } = useCart();
   const [isOpenParticipants, setIsOpenModalParticipants] = useState(false);
   const [isOpenPayment, setIsOpenModalPayment] = useState(false);
   const [id, setId] = useState(0);
@@ -50,23 +43,6 @@ export function Cart(): JSX.Element {
     }, 0)
   );
 
-  const handleProductIncrement = (product: Product) => {
-    const incrementArguments = {
-      productId: product.id,
-      qtd: product.qtd + 1,
-    };
-
-    updatedProductAmount(incrementArguments);
-  };
-
-  const handleProductDecrement = (product: Product) => {
-    const decrementArguments = {
-      productId: product.id,
-      qtd: product.qtd - 1,
-    };
-    updatedProductAmount(decrementArguments);
-  };
-
   const handleRemoveProduct = (productId: number) => {
     removeProduct(productId);
   };
@@ -97,8 +73,6 @@ export function Cart(): JSX.Element {
       </Header>
       <Container>
         <CartList
-          handleProductIncrement={handleProductIncrement}
-          handleProductDecrement={handleProductDecrement}
           handleRemoveProduct={handleRemoveProduct}
           handleOpenModal={handleOpenModal}
           cart={cartFormatted}

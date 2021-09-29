@@ -5,6 +5,7 @@ import { Container, Back, Info, Table } from './styles';
 
 export function Exchange(): JSX.Element {
   const [rg, setRg] = useState('');
+  const [search, setSearch] = useState('');
   return (
     <>
       <Header isColorActive>
@@ -16,8 +17,13 @@ export function Exchange(): JSX.Element {
         <Container>
           <h2> TROCAR BILHETE</h2>
           <div>
-            <input type="text" placeholder="Senha do bilhete" />
-            <button type="submit"> Pesquisar </button>
+            <input
+              type="text"
+              placeholder="Senha do bilhete"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+            />
+            <button type="submit">Pesquisar</button>
           </div>
         </Container>
       </Card>
