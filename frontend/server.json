@@ -4,7 +4,6 @@
       "id": 1,
       "title": "Homem aranha | sem volta para casa",
       "fullPrice": 50,
-      "halfPrice": 25,
       "amount": 25,
       "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
       "date": "2021-09-15",
@@ -14,7 +13,6 @@
       "id": 2,
       "title": "The Witcher 2",
       "fullPrice": 100,
-      "halfPrice": 50,
       "amount": 5,
       "image": "https://mixdeseries.com.br/wp-content/uploads/2019/12/The-Witcher-2-temporada.jpg",
       "date": "2021-11-28",
@@ -24,7 +22,6 @@
       "id": 3,
       "title": "Mulan | live action",
       "fullPrice": 20,
-      "halfPrice": 10,
       "amount": 3,
       "image": "https://media.hugogloss.uol.com.br/uploads/2019/07/primeiro-trailer-mulan.jpg",
       "date": "2021-10-10",
@@ -34,7 +31,6 @@
       "id": 4,
       "title": "Viúva Negra | Marvel Studios",
       "fullPrice": 60,
-      "halfPrice": 30,
       "amount": 25,
       "image": "https://lumiere-a.akamaihd.net/v1/images/1920x1080_logo_d3a5a5f4.png",
       "date": "2021-12-19",
@@ -44,7 +40,6 @@
       "id": 5,
       "title": "John Wick 4",
       "fullPrice": 22.6,
-      "halfPrice": 11.3,
       "amount": 8,
       "image": "https://www.filmes2021.com/wp-content/uploads/2020/03/John-Wick-4.jpg",
       "date": "2021-09-28",
@@ -54,7 +49,6 @@
       "id": 6,
       "title": "Luca | Disney Pixar",
       "fullPrice": 100.4,
-      "halfPrice": 50.2,
       "amount": 25,
       "image": "https://teoriageek.com.br/wp-content/uploads/2021/06/Luca-Banner-1024x576-1.jpg",
       "date": "2021-09-12",
@@ -63,17 +57,27 @@
   ],
   "shoppingCart": [
     {
-      "id": 1,
-      "title": "Homem aranha | sem volta para casa",
-      "fullPrice": 50,
-      "halfPrice": 25,
-      "amount": 25,
-      "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
-      "date": "2021-09-15",
-      "location": "Shopping Dom Pedro",
-      "qtd": 1
+      "id": 2,
+      "title": "The Witcher 2",
+      "fullPrice": 100,
+      "amount": 5,
+      "image": "https://mixdeseries.com.br/wp-content/uploads/2019/12/The-Witcher-2-temporada.jpg",
+      "date": "2021-11-28",
+      "location": "Campinas Shopping",
+      "qtd": 1,
+      "rg": "47856633112"
     }
   ],
-  "payment": [],
+  "payment": [
+    {
+      "id": 7073,
+      "customer": "Jessica Silva",
+      "cpf": "47811256921",
+      "month": "06",
+      "year": "2022",
+      "cvv": "158",
+      "numberCard": "123456"
+    }
+  ],
   "checkout": []
 }
