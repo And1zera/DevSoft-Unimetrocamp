@@ -57,15 +57,14 @@
   ],
   "shoppingCart": [
     {
-      "id": 3,
-      "title": "Mulan | live action",
-      "fullPrice": 20,
-      "amount": 3,
-      "image": "https://media.hugogloss.uol.com.br/uploads/2019/07/primeiro-trailer-mulan.jpg",
-      "date": "2021-10-10",
-      "location": "Campinas Shopping",
-      "qtd": 1,
-      "rg": "556699748"
+      "id": 6,
+      "title": "Luca | Disney Pixar",
+      "fullPrice": 100.4,
+      "amount": 25,
+      "image": "https://teoriageek.com.br/wp-content/uploads/2021/06/Luca-Banner-1024x576-1.jpg",
+      "date": "2021-09-12",
+      "location": "Shopping Dom Pedro",
+      "qtd": 1
     }
   ],
   "payment": {
