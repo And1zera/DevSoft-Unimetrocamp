@@ -1,8 +1,10 @@
-﻿using Bilhet.Domain.Entities;
+﻿using Bilhet.Application.Utils;
+using Bilhet.Domain.Entities;
 using Bilhet.Domain.Interfaces.IRepositories;
 using Bilhet.Domain.Interfaces.IServices;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -59,7 +61,7 @@ namespace Bilhet.Application.Services
 
         public async Task<IEnumerable<Evento>> ListAllAsync()
         {
-            return await _unitOfWork.EventoRepository.ListAllTrackingAsync();
+            return await _unitOfWork.EventoRepository.ListAllAsync();
         }
 
         public async Task<IEnumerable<Evento>> ListAsync(Expression<Func<Evento, bool>> spec)

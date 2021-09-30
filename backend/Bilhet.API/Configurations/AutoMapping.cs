@@ -10,7 +10,8 @@ namespace Bilhet.API.Configurations
         {
 
             CreateMap<EventoDTO, Evento>().ReverseMap();
-             
+            CreateMap<BilheteDTO, Bilhete>().ReverseMap();
+
         }
     }
 }

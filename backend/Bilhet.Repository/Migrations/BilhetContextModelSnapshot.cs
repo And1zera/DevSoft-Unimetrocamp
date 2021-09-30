@@ -19,6 +19,50 @@ namespace Bilhet.Repository.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Bilhet.Domain.Entities.Bilhete", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DataHoraAlteracao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataHoraCriacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("EventoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("RG")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
+
+                    b.Property<Guid?>("UsuarioIdAlteracao")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UsuarioIdCriacao")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventoId");
+
+                    b.ToTable("Bilhete");
+                });
+
             modelBuilder.Entity("Bilhet.Domain.Entities.Evento", b =>
                 {
                     b.Property<Guid>("Id")
@@ -67,6 +111,22 @@ namespace Bilhet.Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Evento");
+                });
+
+            modelBuilder.Entity("Bilhet.Domain.Entities.Bilhete", b =>
+                {
+                    b.HasOne("Bilhet.Domain.Entities.Evento", "Evento")
+                        .WithMany("Bilhetes")
+                        .HasForeignKey("EventoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Evento");
+                });
+
+            modelBuilder.Entity("Bilhet.Domain.Entities.Evento", b =>
+                {
+                    b.Navigation("Bilhetes");
                 });
 #pragma warning restore 612, 618
         }
