@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Bilhet.Domain.Entities
 {
@@ -10,5 +11,7 @@ namespace Bilhet.Domain.Entities
         public string URLImage { get; set; }
         public DateTime Data { get; set; }
         public string Endereco { get; set; }
+
+        public virtual ICollection<Bilhete> Bilhetes { get; set; }
     }
 }

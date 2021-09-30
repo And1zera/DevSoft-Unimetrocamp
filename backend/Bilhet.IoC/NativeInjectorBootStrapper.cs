@@ -1,4 +1,8 @@
+using Bilhet.Application.Services;
+using Bilhet.Domain.Interfaces.IRepositories;
+using Bilhet.Domain.Interfaces.IServices;
 using Bilhet.Repository.Context;
+using Bilhet.Repository.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,10 +15,10 @@ namespace PerformaIT.PO.IoC
         {
 
             // App Services
-            //services.AddScoped<IService, Service>();      
+            services.AddScoped<IEventoService, EventoService>();      
 
             // Infra - Unit Of Work
-            //services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // Infra - Context
             services.AddScoped<DbContext, BilhetContext>();

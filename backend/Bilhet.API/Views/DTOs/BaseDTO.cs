@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bilhet.API.View.DTOs
+namespace Bilhet.API
 {
     public abstract class BaseDTO
     {
