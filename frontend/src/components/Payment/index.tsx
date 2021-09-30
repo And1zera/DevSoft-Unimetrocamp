@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import { toast } from 'react-toastify';
 import closeImg from '../../assets/close.svg';
 import { api } from '../../services/api';
 import { Container, Content } from './styles';
@@ -28,12 +29,28 @@ export function Payment({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await api.post('/payment', {
-      id,
-      ...dataBank,
-    });
-    onIsPaymentDisabled(false);
-    onCloseModal();
+    try {
+      if (
+        !dataBank.customer &&
+        !dataBank.cvv &&
+        !dataBank.month &&
+        !dataBank.numberCard &&
+        !dataBank.year &&
+        !dataBank.cpf
+      ) {
+        toast.error('Todos os campos são obrigatórios');
+        return;
+      }
+
+      await api.post('/payment', {
+        id,
+        ...dataBank,
+      });
+      onIsPaymentDisabled(false);
+      onCloseModal();
+    } catch (err) {
+      toast.error('Erro ao cadastrar pagamento');
+    }
   };
 
   return (
@@ -100,7 +117,18 @@ export function Payment({
             />
           </div>
 
-          <button type="submit" onClick={handleSubmit}>
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            disabled={
+              !dataBank.customer ||
+              !dataBank.cvv ||
+              !dataBank.month ||
+              !dataBank.numberCard ||
+              !dataBank.year ||
+              !dataBank.cpf
+            }
+          >
             Salvar
           </button>
         </Content>

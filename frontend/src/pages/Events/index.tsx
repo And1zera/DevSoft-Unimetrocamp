@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-  MdBuild,
-  MdSettingsBackupRestore,
-  MdShoppingBasket,
-} from 'react-icons/md';
+import { MdShoppingBasket } from 'react-icons/md';
+import { FaAddressCard } from 'react-icons/fa';
 import { Card } from '../../components/Card';
 import { EventList } from '../../components/EventList';
 import { Header } from '../../components/Header';
@@ -26,17 +23,11 @@ export function Events(): JSX.Element {
             </span>
           </div>
         </Cart>
-        <Cart to="/bilhet/trocar-bilhete">
-          <MdBuild size={26} color="var(--body)" />
-          <div>
-            <strong>Trocar Bilhete</strong>
-          </div>
-        </Cart>
 
-        <Cart to="/bilhet/devolver-bilhete">
-          <MdSettingsBackupRestore size={26} color="var(--body)" />
+        <Cart to="/bilhet/meus-bilhete">
+          <FaAddressCard size={26} color="var(--body)" />
           <div>
-            <strong> Devolver Bilhete</strong>
+            <strong>Meus Bilhete</strong>
           </div>
         </Cart>
       </Card>

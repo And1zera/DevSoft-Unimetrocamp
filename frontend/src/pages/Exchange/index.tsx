@@ -1,63 +1,89 @@
 import React, { useState } from 'react';
-import { Card } from '../../components/Card';
-import { Header } from '../../components/Header';
-import { Container, Back, Info, Table } from './styles';
+import Modal from 'react-modal';
+import { toast } from 'react-toastify';
+import closeImg from '../../assets/close.svg';
+import { Product } from '../../interfaces';
+import { api } from '../../services/api';
+import { Container } from './styles';
 
-export function Exchange(): JSX.Element {
+interface ExchangeProps {
+  onCloseModal: () => void;
+  isOpen: boolean;
+  id: number;
+  onProducts: (product: Product[]) => void;
+}
+
+export function Exchange({
+  onCloseModal,
+  isOpen,
+  id,
+  onProducts,
+}: ExchangeProps): JSX.Element {
   const [rg, setRg] = useState('');
-  const [search, setSearch] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    try {
+      e.preventDefault();
+      if (!rg && !password) {
+        toast.error('Campos RG e Senha são obrigatório');
+        return;
+      }
+      if (!rg) {
+        toast.error('Campo RG é obrigatório');
+        return;
+      }
+
+      if (!password) {
+        toast.error('Campo senha é obrigatório');
+        return;
+      }
+      await api.put(`/checkout/${id}`, { rg });
+      const { data } = await api.get('checkout');
+      onProducts(data);
+      toast.success('Alterado com sucesso');
+      onCloseModal();
+    } catch (err) {
+      toast.error('Erro ao tentar alterar');
+    }
+  };
+
   return (
-    <>
-      <Header isColorActive>
-        <Back to="/bilhet/events" className="back">
-          Lista de Eventos
-        </Back>
-      </Header>
-      <Card>
-        <Container>
-          <h2> TROCAR BILHETE</h2>
-          <div>
-            <input
-              type="text"
-              placeholder="Senha do bilhete"
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-            />
-            <button type="submit">Pesquisar</button>
-          </div>
-        </Container>
-      </Card>
-      <Card>
-        <Info>
-          <Table>
-            <thead>
-              <tr>
-                <th>RG Participante</th>
-                <th>Bilhete</th>
-                <th>Preço</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>99999999-9</td>
-                <td>Homem Aranha</td>
-                <td>R$ 150,00</td>
-              </tr>
-            </tbody>
-          </Table>
-          <Container>
-            <div>
-              <input
-                type="text"
-                placeholder="RG do novo participante"
-                onChange={e => setRg(e.target.value)}
-                value={rg}
-              />
-              <button type="submit"> Trocar </button>
-            </div>
-          </Container>
-        </Info>
-      </Card>
-    </>
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onCloseModal}
+      overlayClassName="react-modal-overlay"
+      className="react-modal-content"
+    >
+      <button
+        type="button"
+        className="react-modal-close"
+        onClick={onCloseModal}
+      >
+        <img src={closeImg} alt="Fechar modal" />
+      </button>
+      <Container>
+        <h2>TROCAR PARTICIPANTE</h2>
+        <input
+          type="password"
+          placeholder="Senha do bilhete"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Novo RG"
+          value={rg}
+          onChange={e => setRg(e.target.value)}
+        />
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          disabled={!rg || !password}
+        >
+          Enviar
+        </button>
+      </Container>
+    </Modal>
   );
 }

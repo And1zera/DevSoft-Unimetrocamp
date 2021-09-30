@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.form`
@@ -7,16 +6,12 @@ export const Container = styled.form`
   h2 {
     color: var(--text-title);
     font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
   }
 
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 1.5rem 0;
-  }
   input {
-    width: 70%;
+    width: 100%;
     height: 3rem;
     padding: 0 1.5rem;
 
@@ -29,10 +24,14 @@ export const Container = styled.form`
     &::placeholder {
       color: var(--text-title);
     }
+
+    & + input {
+      margin-top: 1.5rem;
+    }
   }
 
   button[type='submit'] {
-    width: 28%;
+    width: 100%;
     padding: 0 1.5rem;
     height: 3rem;
     color: var(--white);
@@ -41,52 +40,12 @@ export const Container = styled.form`
     border: 0;
     font-size: 1rem;
     font-weight: 600;
+    margin-top: 2rem;
 
     transition: filter 0.2s;
 
     &:hover {
       filter: brightness(0.9);
     }
-  }
-`;
-
-export const Back = styled(Link)`
-  color: var(--white);
-  text-decoration: none;
-  font-size: 0.9rem;
-
-  transition: filter 0.2s;
-
-  &:hover {
-    filter: brightness(0.9);
-  }
-`;
-
-export const Info = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-  margin-bottom: 2rem;
-`;
-
-export const Table = styled.table`
-  width: 100%;
-  margin-bottom: 2rem;
-
-  thead th {
-    color: #999;
-    text-align: left;
-    padding: 12px;
-  }
-
-  tbody td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-  }
-
-  strong {
-    color: #333;
-    display: block;
   }
 `;

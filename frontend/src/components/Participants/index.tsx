@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import { toast } from 'react-toastify';
 import closeImg from '../../assets/close.svg';
 import { useCart } from '../../hooks/useCart';
 import { api } from '../../services/api';
@@ -24,6 +25,10 @@ export function Participants({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!rg) {
+      toast.error('Campo RG é obrigatório');
+      return;
+    }
     cart.map(async product => {
       if (id === product.id) {
         await api.put(`/shoppingCart/${id}`, { ...product, rg });
@@ -59,7 +64,7 @@ export function Participants({
             value={rg}
             onChange={e => setRg(e.target.value)}
           />
-          <button type="submit" onClick={handleSubmit}>
+          <button type="submit" onClick={handleSubmit} disabled={!rg}>
             Salvar
           </button>
         </Content>
