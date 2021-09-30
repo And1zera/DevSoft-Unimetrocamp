@@ -80,8 +80,11 @@
   "checkout": [
     {
       "id": 3,
+      "image": "https://media.hugogloss.uol.com.br/uploads/2019/07/primeiro-trailer-mulan.jpg",
+      "title": "Mulan | live action",
       "fullPrice": 10,
-      "rg": "556699748"
+      "rg": "556699748",
+      "senha": "123"
     }
   ]
 }
