@@ -13,7 +13,7 @@ import { formatPrice } from '../../utils/format';
 import { Container, Total, Back } from './styles';
 
 export function Cart(): JSX.Element {
-  const { removeProduct, loading, cart } = useCart();
+  const { removeProduct, loading, cart, setCart } = useCart();
   const [isOpenParticipants, setIsOpenModalParticipants] = useState(false);
   const [isOpenPayment, setIsOpenModalPayment] = useState(false);
   const [isOpenModalTicket, setIsOpenModalTicket] = useState(false);
@@ -21,6 +21,7 @@ export function Cart(): JSX.Element {
   const [isRgDisabled, setIsDisabled] = useState(true);
   const [isPaymentDisabled, setIsPaymentDisabled] = useState(true);
   const [ticket, setTicket] = useState<Tickets | null>(null);
+  const [disabled, setDisabled] = useState(false);
   const [id, setId] = useState(0);
 
   const cartFormatted = cart.map(product => ({
@@ -63,14 +64,17 @@ export function Cart(): JSX.Element {
         } else {
           price = product.preco;
         }
-        const { data } = await api.post('http://localhost:3001/checkout', {
-          id: product.id,
-          preco: price,
-          rg: product.rg,
+        const { data } = await api.post('/Bilhete', {
+          Eventoid: product.id,
+          Preco: price,
+          RG: product.rg,
         });
         setTicket(data);
       });
       toast.success('Venda finalizada!');
+      setCart([]);
+      localStorage.setItem('cart', JSON.stringify([]));
+      setDisabled(true);
       setIsOpenModalTicket(true);
     } catch (err) {
       toast.error('Erro ao finalizar compra');
@@ -96,7 +100,7 @@ export function Cart(): JSX.Element {
           <button
             type="button"
             onClick={handleSubmit}
-            disabled={isRgDisabled || isPaymentDisabled}
+            disabled={isRgDisabled || isPaymentDisabled || disabled}
           >
             Finalizar pedido
           </button>

@@ -69,13 +69,13 @@
     }
   ],
   "payment": {
-    "id": 8826,
+    "id": 1246,
     "customer": "1",
-    "cpf": "2",
-    "month": "2",
-    "year": "2",
-    "cvv": "2",
-    "numberCard": "2"
+    "cpf": "11",
+    "month": "11",
+    "year": "1",
+    "cvv": "1",
+    "numberCard": "1"
   },
   "checkout": [
     {

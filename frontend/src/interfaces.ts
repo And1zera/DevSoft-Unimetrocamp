@@ -14,7 +14,7 @@ export interface Product {
 
 export interface Tickets {
   id: number;
-  fullPrice: number;
+  preco: number;
   rg: string;
   senha: number;
 }

@@ -39,7 +39,7 @@ export function Ticket({
               RG: <span> {ticket?.rg}</span>
             </p>
             <p>
-              Preço: <span> {formatPrice(Number(ticket?.fullPrice))} </span>
+              Preço: <span> {formatPrice(Number(ticket?.preco))} </span>
             </p>
             <p>
               Senha: <span> 51511255</span>
