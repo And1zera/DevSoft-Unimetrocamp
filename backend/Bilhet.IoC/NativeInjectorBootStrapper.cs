@@ -16,6 +16,7 @@ namespace PerformaIT.PO.IoC
 
             // App Services
             services.AddScoped<IEventoService, EventoService>();      
+            services.AddScoped<IBilheteService, BilheteService>();
 
             // Infra - Unit Of Work
             services.AddScoped<IUnitOfWork, UnitOfWork>();
