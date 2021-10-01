@@ -24,7 +24,7 @@ export function Events(): JSX.Element {
           </div>
         </Cart>
 
-        <Cart to="/bilhet/meus-bilhete">
+        <Cart to="/bilhet/meus-bilhetes">
           <FaAddressCard size={26} color="var(--body)" />
           <div>
             <strong>Meus Bilhete</strong>

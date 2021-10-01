@@ -5,8 +5,9 @@ import { Header } from '../../components/Header';
 import { Loading } from '../../components/Loading';
 import { Participants } from '../../components/Participants';
 import { Payment } from '../../components/Payment';
+import { Ticket } from '../../components/Ticket';
 import { useCart } from '../../hooks/useCart';
-import { Product } from '../../interfaces';
+import { Product, Tickets } from '../../interfaces';
 import { api } from '../../services/api';
 import { formatPrice } from '../../utils/format';
 import { Container, Total, Back } from './styles';
@@ -15,9 +16,11 @@ export function Cart(): JSX.Element {
   const { removeProduct, loadShoppingCart, loading, cart } = useCart();
   const [isOpenParticipants, setIsOpenModalParticipants] = useState(false);
   const [isOpenPayment, setIsOpenModalPayment] = useState(false);
+  const [isOpenModalTicket, setIsOpenModalTicket] = useState(false);
   const [typeTicket, setTypeTicket] = useState('fullPrice');
   const [isRgDisabled, setIsDisabled] = useState(true);
   const [isPaymentDisabled, setIsPaymentDisabled] = useState(true);
+  const [ticket, setTicket] = useState<Tickets | null>(null);
   const [id, setId] = useState(0);
 
   const loadProducts = useCallback(async () => {
@@ -70,20 +73,23 @@ export function Cart(): JSX.Element {
       carts.map(async product => {
         if (typeTicket === 'halfPrice') {
           const price = product.fullPrice / 2;
-          await api.post('/checkout', {
+          const { data } = await api.post('/checkout', {
             id: product.id,
             fullPrice: price,
             rg: product.rg,
           });
+          setTicket(data);
         } else {
-          await api.post('/checkout', {
+          const { data } = await api.post('/checkout', {
             id: product.id,
             fullPrice: product.fullPrice,
             rg: product.rg,
           });
+          setTicket(data);
         }
       });
       toast.success('Venda finalizada!');
+      setIsOpenModalTicket(true);
     } catch (err) {
       toast.error('Erro ao finalizar compra');
     }
@@ -135,6 +141,12 @@ export function Cart(): JSX.Element {
           isOpen={isOpenPayment}
           onIsPaymentDisabled={setIsPaymentDisabled}
           onCloseModal={() => setIsOpenModalPayment(false)}
+        />
+
+        <Ticket
+          isOpen={isOpenModalTicket}
+          onCloseModal={() => setIsOpenModalTicket(false)}
+          ticket={ticket}
         />
       </Container>
     </>

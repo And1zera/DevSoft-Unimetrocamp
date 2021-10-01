@@ -50,7 +50,7 @@ export function Login(): JSX.Element {
 
         <button type="submit">Entrar</button>
 
-        <Link to="cadastra-se">
+        <Link to="/bilhet/cadastre-se" onClick={handleCloseModal}>
           <span>Não tem uma conta? </span> Cadastre-se
         </Link>
       </Container>

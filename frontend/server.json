@@ -57,34 +57,38 @@
   ],
   "shoppingCart": [
     {
-      "id": 3,
-      "title": "Mulan | live action",
-      "fullPrice": 20,
-      "amount": 3,
-      "image": "https://media.hugogloss.uol.com.br/uploads/2019/07/primeiro-trailer-mulan.jpg",
-      "date": "2021-10-10",
-      "location": "Campinas Shopping",
+      "id": 1,
+      "title": "Homem aranha | sem volta para casa",
+      "fullPrice": 50,
+      "amount": 25,
+      "image": "https://i.ytimg.com/vi/3QqXRo8wiuo/maxresdefault.jpg",
+      "date": "2021-09-15",
+      "location": "Shopping Dom Pedro",
       "qtd": 1,
-      "rg": "556699748"
+      "rg": "1"
     }
   ],
   "payment": {
-    "id": 6285,
-    "customer": "Jessica",
-    "cpf": "152330022",
-    "month": "12",
-    "year": "2022",
-    "cvv": "156",
-    "numberCard": "556987"
+    "id": 5331,
+    "customer": "1",
+    "cpf": "1",
+    "month": "1",
+    "year": "1",
+    "cvv": "1",
+    "numberCard": "1"
   },
   "checkout": [
     {
       "id": 3,
-      "image": "https://media.hugogloss.uol.com.br/uploads/2019/07/primeiro-trailer-mulan.jpg",
-      "title": "Mulan | live action",
+      "title": "Homem aranha | sem volta para casa",
       "fullPrice": 10,
-      "rg": "556699748",
-      "senha": "123"
+      "rg": "551456985",
+      "image": "https://lumiere-a.akamaihd.net/v1/images/1920x1080_logo_d3a5a5f4.png"
+    },
+    {
+      "id": 1,
+      "fullPrice": 50,
+      "rg": "1"
     }
   ]
 }
