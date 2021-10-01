@@ -3,9 +3,9 @@ import { toast } from 'react-toastify';
 import { CartList } from '../../components/CartList';
 import { Header } from '../../components/Header';
 import { Loading } from '../../components/Loading';
+import { ModalTicket } from '../../components/ModalTicket';
 import { Participants } from '../../components/Participants';
 import { Payment } from '../../components/Payment';
-import { Ticket } from '../../components/Ticket';
 import { useCart } from '../../hooks/useCart';
 import { Tickets } from '../../interfaces';
 import { api } from '../../services/api';
@@ -22,7 +22,7 @@ export function Cart(): JSX.Element {
   const [isPaymentDisabled, setIsPaymentDisabled] = useState(true);
   const [ticket, setTicket] = useState<Tickets | null>(null);
   const [disabled, setDisabled] = useState(false);
-  const [id, setId] = useState(0);
+  const [id, setId] = useState('');
 
   const cartFormatted = cart.map(product => ({
     ...product,
@@ -45,11 +45,11 @@ export function Cart(): JSX.Element {
     }, 0)
   );
 
-  const handleRemoveProduct = (productId: number) => {
+  const handleRemoveProduct = (productId: string) => {
     removeProduct(productId);
   };
 
-  const handleOpenModal = (productId: number) => {
+  const handleOpenModal = (productId: string) => {
     setIsOpenModalParticipants(true);
     setId(productId);
   };
@@ -129,7 +129,7 @@ export function Cart(): JSX.Element {
           onCloseModal={() => setIsOpenModalPayment(false)}
         />
 
-        <Ticket
+        <ModalTicket
           isOpen={isOpenModalTicket}
           onCloseModal={() => setIsOpenModalTicket(false)}
           ticket={ticket}

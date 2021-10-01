@@ -9,7 +9,7 @@ import { Container, Content } from './styles';
 interface ParticipantsProps {
   onCloseModal: () => void;
   isOpen: boolean;
-  id: number;
+  id: string;
   onIsRgExist: (value: boolean) => void;
 }
 

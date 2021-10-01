@@ -6,17 +6,17 @@ import { formatPrice } from '../../utils/format';
 import { Container } from './styles';
 import { Tickets } from '../../interfaces';
 
-interface TicketProps {
+interface ModalTicketProps {
   onCloseModal: () => void;
   isOpen: boolean;
   ticket: Tickets | null;
 }
 
-export function Ticket({
+export function ModalTicket({
   onCloseModal,
   isOpen,
   ticket,
-}: TicketProps): JSX.Element {
+}: ModalTicketProps): JSX.Element {
   return (
     <Modal
       isOpen={isOpen}
@@ -42,7 +42,7 @@ export function Ticket({
               Preço: <span> {formatPrice(Number(ticket?.preco))} </span>
             </p>
             <p>
-              Senha: <span> 51511255</span>
+              Senha: <span> {ticket?.senha} </span>
             </p>
           </div>
 

@@ -11,8 +11,8 @@ interface ProductFormatted extends Product {
 
 interface CartListProps {
   cart: ProductFormatted[];
-  handleOpenModal: (id: number) => void;
-  handleRemoveProduct: (id: number) => void;
+  handleOpenModal: (id: string) => void;
+  handleRemoveProduct: (id: string) => void;
   onTypeTicket: (value: string) => void;
 }
 

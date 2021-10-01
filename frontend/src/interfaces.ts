@@ -1,5 +1,6 @@
 export interface Product {
-  id: number;
+  id: string;
+  eventoId: string;
   titulo: string;
   endereco: string;
   data: string;
@@ -7,14 +8,24 @@ export interface Product {
   preco: number;
   urlImage: string;
   qtdIngresso: number;
-  senha: number;
+  senha: string;
   rg: string;
   qtd: number;
+  ativo: boolean;
 }
 
 export interface Tickets {
   id: number;
   preco: number;
   rg: string;
-  senha: number;
+  senha: string;
+}
+
+export interface Evento {
+  urlImage: string;
+  titulo: string;
+}
+
+export interface Products extends Product {
+  evento: Evento;
 }

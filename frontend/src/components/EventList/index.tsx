@@ -10,7 +10,7 @@ import { Loading } from '../Loading';
 import { ProductList } from './styles';
 
 interface CartItemsAmount {
-  [key: number]: number;
+  [key: string]: number;
 }
 
 export function EventList(): JSX.Element {
@@ -37,7 +37,7 @@ export function EventList(): JSX.Element {
     }
   }, [handleLoading]);
 
-  const handleAddProduct = (productId: number) => {
+  const handleAddProduct = (productId: string) => {
     if (cart.length === 1) {
       toast.warning('Já existe um produto no carrinho!');
       return;

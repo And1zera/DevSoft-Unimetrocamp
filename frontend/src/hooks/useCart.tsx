@@ -9,8 +9,8 @@ interface CartProviderProps {
 
 interface CartContextData {
   cart: Product[];
-  addProduct: (productId: number) => void;
-  removeProduct: (productId: number) => void;
+  addProduct: (productId: string) => void;
+  removeProduct: (productId: string) => void;
   loading: boolean;
   handleLoading: (loading: boolean) => void;
   setCart: (value: Product[]) => void;
@@ -32,7 +32,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     setLoading(loading);
   }, []);
 
-  const addProduct = async (productId: number) => {
+  const addProduct = async (productId: string) => {
     try {
       setLoading(true);
 
@@ -69,7 +69,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     }
   };
 
-  const removeProduct = async (productId: number) => {
+  const removeProduct = async (productId: string) => {
     setLoading(true);
     try {
       const productExistInCart = cart.find(product => product.id === productId);
