@@ -51,7 +51,7 @@ export function CartList({
                 className="btn-modal"
                 onClick={() => handleOpenModal(product.id)}
               >
-                Informar Participantes
+                Informar Participante
               </button>
             </td>
             <td>
