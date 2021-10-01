@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { CartList } from '../../components/CartList';
 import { Header } from '../../components/Header';
@@ -7,13 +7,13 @@ import { Participants } from '../../components/Participants';
 import { Payment } from '../../components/Payment';
 import { Ticket } from '../../components/Ticket';
 import { useCart } from '../../hooks/useCart';
-import { Product, Tickets } from '../../interfaces';
+import { Tickets } from '../../interfaces';
 import { api } from '../../services/api';
 import { formatPrice } from '../../utils/format';
 import { Container, Total, Back } from './styles';
 
 export function Cart(): JSX.Element {
-  const { removeProduct, loadShoppingCart, loading, cart } = useCart();
+  const { removeProduct, loading, cart } = useCart();
   const [isOpenParticipants, setIsOpenModalParticipants] = useState(false);
   const [isOpenPayment, setIsOpenModalPayment] = useState(false);
   const [isOpenModalTicket, setIsOpenModalTicket] = useState(false);
@@ -23,36 +23,23 @@ export function Cart(): JSX.Element {
   const [ticket, setTicket] = useState<Tickets | null>(null);
   const [id, setId] = useState(0);
 
-  const loadProducts = useCallback(async () => {
-    try {
-      const { data } = await api.get('/shoppingCart');
-      loadShoppingCart(data);
-    } catch (e) {
-      toast.error('Erro ao obter os dados');
-    }
-  }, [loadShoppingCart]);
-
-  useEffect(() => {
-    loadProducts();
-  }, [loadProducts]);
-
   const cartFormatted = cart.map(product => ({
     ...product,
-    halfPriceFormatted: formatPrice(product.fullPrice / 2),
-    fullPriceFormatted: formatPrice(product.fullPrice),
+    halfPriceFormatted: formatPrice(product.preco / 2),
+    fullPriceFormatted: formatPrice(product.preco),
     subTotal:
       typeTicket === 'halfPrice'
-        ? formatPrice((product.fullPrice / 2) * product.qtd)
-        : formatPrice(product.fullPrice * product.qtd),
+        ? formatPrice((product.preco / 2) * product.qtd)
+        : formatPrice(product.preco * product.qtd),
   }));
 
   const total = formatPrice(
     cart.reduce((sumTotal, product) => {
       if (typeTicket === 'halfPrice') {
-        sumTotal += (product.fullPrice / 2) * product.qtd;
+        sumTotal += (product.preco / 2) * product.qtd;
         return sumTotal;
       }
-      sumTotal += product.fullPrice * product.qtd;
+      sumTotal += product.preco * product.qtd;
       return sumTotal;
     }, 0)
   );
@@ -69,24 +56,19 @@ export function Cart(): JSX.Element {
   const handleSubmit = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
-      const { data: carts } = await api.get<Product[]>('/shoppingCart');
-      carts.map(async product => {
+      let price = 0;
+      cart.map(async product => {
         if (typeTicket === 'halfPrice') {
-          const price = product.fullPrice / 2;
-          const { data } = await api.post('/checkout', {
-            id: product.id,
-            fullPrice: price,
-            rg: product.rg,
-          });
-          setTicket(data);
+          price = product.preco / 2;
         } else {
-          const { data } = await api.post('/checkout', {
-            id: product.id,
-            fullPrice: product.fullPrice,
-            rg: product.rg,
-          });
-          setTicket(data);
+          price = product.preco;
         }
+        const { data } = await api.post('http://localhost:3001/checkout', {
+          id: product.id,
+          preco: price,
+          rg: product.rg,
+        });
+        setTicket(data);
       });
       toast.success('Venda finalizada!');
       setIsOpenModalTicket(true);

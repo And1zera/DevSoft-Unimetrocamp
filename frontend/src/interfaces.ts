@@ -1,15 +1,15 @@
 export interface Product {
   id: number;
-  title: string;
-  location: string;
-  date: string;
+  titulo: string;
+  endereco: string;
+  data: string;
   halfPrice: number;
-  fullPrice: number;
-  image: string;
-  amount: number;
-  qtd: number;
+  preco: number;
+  urlImage: string;
+  qtdIngresso: number;
   senha: number;
   rg: string;
+  qtd: number;
 }
 
 export interface Tickets {

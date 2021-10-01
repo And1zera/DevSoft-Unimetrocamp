@@ -63,10 +63,10 @@ export function Ticket(): JSX.Element {
             {products.map(product => (
               <tr key={product.id}>
                 <td>
-                  <img src={product.image} alt={product.title} />
+                  <img src={product.urlImage} alt={product.titulo} />
                 </td>
                 <td>
-                  <strong>{product.title}</strong>
+                  <strong>{product.titulo}</strong>
                   <button
                     type="button"
                     className="btn-modal"
@@ -76,7 +76,7 @@ export function Ticket(): JSX.Element {
                   </button>
                 </td>
                 <td>
-                  <span>{formatPrice(product.fullPrice)}</span>
+                  <span>{formatPrice(product.preco)}</span>
                   <button
                     type="button"
                     className="btn-modal"

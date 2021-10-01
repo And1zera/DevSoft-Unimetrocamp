@@ -42,7 +42,7 @@ export function Payment({
         return;
       }
 
-      await api.post('/payment', {
+      await api.post('http://localhost:3001/payment', {
         id,
         ...dataBank,
       });
