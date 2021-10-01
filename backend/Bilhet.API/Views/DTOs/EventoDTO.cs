@@ -14,6 +14,6 @@ namespace Bilhet.API.Views.DTOs
         public string Endereco { get; set; }
 
         [JsonIgnore]
-        public virtual ICollection<BilheteDTO> Bilhetes { get; set; }
+        public virtual ICollection<BilheteDTO> Bilhetes { get; set; } = new List<BilheteDTO>();
     }
 }

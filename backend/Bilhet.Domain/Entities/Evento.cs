@@ -12,6 +12,6 @@ namespace Bilhet.Domain.Entities
         public DateTime Data { get; set; }
         public string Endereco { get; set; }
 
-        public virtual ICollection<Bilhete> Bilhetes { get; set; }
+        public virtual ICollection<Bilhete> Bilhetes { get; set; } = new List<Bilhete>();
     }
 }

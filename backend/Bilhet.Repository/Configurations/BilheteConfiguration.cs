@@ -9,10 +9,9 @@ namespace Bilhet.Repository.Configurations
         public void Configure(EntityTypeBuilder<Bilhete> builder)
         {
             builder.ToTable("Bilhete");
-            builder.HasKey(e => e.Id);
+            builder.HasKey(e => new { e.Id, e.Senha});
             builder.Property(e => e.RG).HasMaxLength(12).IsRequired();
             builder.Property(e => e.Preco).HasColumnType("decimal(18,2)").IsRequired();
-            builder.Property(e => e.Senha).HasMaxLength(6).IsRequired();
 
             builder.HasOne(e => e.Evento).WithMany(e => e.Bilhetes).HasForeignKey(e => e.EventoId);
         }

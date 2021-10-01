@@ -10,13 +10,15 @@ namespace Bilhet.Repository.Repositories
         private readonly DbContext _context;
 
         public IEventoRepository EventoRepository { get; }
+        public IBilheteRepository BilheteRepository { get; }
 
         public UnitOfWork(BilhetContext context)
         {
             this._context = context;
 
             this.EventoRepository = new EventoRepository(_context);
- 
+            this.BilheteRepository = new BilheteRepository(_context);
+
         }
 
         public bool Commit()

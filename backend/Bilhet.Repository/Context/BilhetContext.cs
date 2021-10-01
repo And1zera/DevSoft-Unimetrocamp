@@ -9,7 +9,8 @@ namespace Bilhet.Repository.Context
     {
 
         public DbSet<Evento> Evento { get; set; }
-        
+        public DbSet<Bilhete> Bilhete { get; set; }
+
 
         public BilhetContext(DbContextOptions<BilhetContext> options) : base(options)
         {

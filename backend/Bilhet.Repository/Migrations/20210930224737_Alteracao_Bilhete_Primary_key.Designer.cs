@@ -4,14 +4,16 @@ using Bilhet.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bilhet.Repository.Migrations
 {
     [DbContext(typeof(BilhetContext))]
-    partial class BilhetContextModelSnapshot : ModelSnapshot
+    [Migration("20210930224737_Alteracao_Bilhete_Primary_key")]
+    partial class Alteracao_Bilhete_Primary_key
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
