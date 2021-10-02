@@ -11,8 +11,8 @@ interface ProductFormatted extends Product {
 
 interface CartListProps {
   cart: ProductFormatted[];
-  handleOpenModal: (id: number) => void;
-  handleRemoveProduct: (id: number) => void;
+  handleOpenModal: (id: string) => void;
+  handleRemoveProduct: (id: string) => void;
   onTypeTicket: (value: string) => void;
 }
 
@@ -38,10 +38,10 @@ export function CartList({
         {cart.map(product => (
           <tr key={product.id}>
             <td>
-              <img src={product.image} alt={product.title} />
+              <img src={product.urlImage} alt={product.titulo} />
             </td>
             <td>
-              <strong>{product.title}</strong>
+              <strong>{product.titulo}</strong>
               <div>
                 <span>Inteira: {product.fullPriceFormatted}</span>
                 <span>Meia: {product.halfPriceFormatted}</span>

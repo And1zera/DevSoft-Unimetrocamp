@@ -1,20 +1,31 @@
 export interface Product {
-  id: number;
-  title: string;
-  location: string;
-  date: string;
+  id: string;
+  eventoId: string;
+  titulo: string;
+  endereco: string;
+  data: string;
   halfPrice: number;
-  fullPrice: number;
-  image: string;
-  amount: number;
-  qtd: number;
-  senha: number;
+  preco: number;
+  urlImage: string;
+  qtdIngresso: number;
+  senha: string;
   rg: string;
+  qtd: number;
+  ativo: boolean;
 }
 
 export interface Tickets {
   id: number;
-  fullPrice: number;
+  preco: number;
   rg: string;
-  senha: number;
+  senha: string;
+}
+
+export interface Evento {
+  urlImage: string;
+  titulo: string;
+}
+
+export interface Products extends Product {
+  evento: Evento;
 }

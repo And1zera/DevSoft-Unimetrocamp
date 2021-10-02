@@ -1,19 +1,20 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { CartList } from '../../components/CartList';
 import { Header } from '../../components/Header';
 import { Loading } from '../../components/Loading';
+import { ModalTicket } from '../../components/ModalTicket';
 import { Participants } from '../../components/Participants';
 import { Payment } from '../../components/Payment';
-import { Ticket } from '../../components/Ticket';
 import { useCart } from '../../hooks/useCart';
-import { Product, Tickets } from '../../interfaces';
+import { Tickets } from '../../interfaces';
 import { api } from '../../services/api';
 import { formatPrice } from '../../utils/format';
+import { MyCart } from './MyCart';
 import { Container, Total, Back } from './styles';
 
 export function Cart(): JSX.Element {
-  const { removeProduct, loadShoppingCart, loading, cart } = useCart();
+  const { removeProduct, loading, cart, setCart } = useCart();
   const [isOpenParticipants, setIsOpenModalParticipants] = useState(false);
   const [isOpenPayment, setIsOpenModalPayment] = useState(false);
   const [isOpenModalTicket, setIsOpenModalTicket] = useState(false);
@@ -21,47 +22,43 @@ export function Cart(): JSX.Element {
   const [isRgDisabled, setIsDisabled] = useState(true);
   const [isPaymentDisabled, setIsPaymentDisabled] = useState(true);
   const [ticket, setTicket] = useState<Tickets | null>(null);
-  const [id, setId] = useState(0);
-
-  const loadProducts = useCallback(async () => {
-    try {
-      const { data } = await api.get('/shoppingCart');
-      loadShoppingCart(data);
-    } catch (e) {
-      toast.error('Erro ao obter os dados');
-    }
-  }, [loadShoppingCart]);
+  const [disabled, setDisabled] = useState(false);
+  const [cartEmpty, setCartEmpty] = useState(false);
+  const [id, setId] = useState('');
+  const cartSize = cart.length;
 
   useEffect(() => {
-    loadProducts();
-  }, [loadProducts]);
+    if (!cartSize) {
+      setCartEmpty(true);
+    }
+  }, [cartSize]);
 
   const cartFormatted = cart.map(product => ({
     ...product,
-    halfPriceFormatted: formatPrice(product.fullPrice / 2),
-    fullPriceFormatted: formatPrice(product.fullPrice),
+    halfPriceFormatted: formatPrice(product.preco / 2),
+    fullPriceFormatted: formatPrice(product.preco),
     subTotal:
       typeTicket === 'halfPrice'
-        ? formatPrice((product.fullPrice / 2) * product.qtd)
-        : formatPrice(product.fullPrice * product.qtd),
+        ? formatPrice((product.preco / 2) * product.qtd)
+        : formatPrice(product.preco * product.qtd),
   }));
 
   const total = formatPrice(
     cart.reduce((sumTotal, product) => {
       if (typeTicket === 'halfPrice') {
-        sumTotal += (product.fullPrice / 2) * product.qtd;
+        sumTotal += (product.preco / 2) * product.qtd;
         return sumTotal;
       }
-      sumTotal += product.fullPrice * product.qtd;
+      sumTotal += product.preco * product.qtd;
       return sumTotal;
     }, 0)
   );
 
-  const handleRemoveProduct = (productId: number) => {
+  const handleRemoveProduct = (productId: string) => {
     removeProduct(productId);
   };
 
-  const handleOpenModal = (productId: number) => {
+  const handleOpenModal = (productId: string) => {
     setIsOpenModalParticipants(true);
     setId(productId);
   };
@@ -69,26 +66,24 @@ export function Cart(): JSX.Element {
   const handleSubmit = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
-      const { data: carts } = await api.get<Product[]>('/shoppingCart');
-      carts.map(async product => {
+      let price = 0;
+      cart.map(async product => {
         if (typeTicket === 'halfPrice') {
-          const price = product.fullPrice / 2;
-          const { data } = await api.post('/checkout', {
-            id: product.id,
-            fullPrice: price,
-            rg: product.rg,
-          });
-          setTicket(data);
+          price = product.preco / 2;
         } else {
-          const { data } = await api.post('/checkout', {
-            id: product.id,
-            fullPrice: product.fullPrice,
-            rg: product.rg,
-          });
-          setTicket(data);
+          price = product.preco;
         }
+        const { data } = await api.post('/Bilhete', {
+          Eventoid: product.id,
+          Preco: price,
+          RG: product.rg,
+        });
+        setTicket(data);
       });
       toast.success('Venda finalizada!');
+      setCart([]);
+      localStorage.setItem('cart', JSON.stringify([]));
+      setDisabled(true);
       setIsOpenModalTicket(true);
     } catch (err) {
       toast.error('Erro ao finalizar compra');
@@ -104,33 +99,38 @@ export function Cart(): JSX.Element {
         </Back>
       </Header>
       <Container>
-        <CartList
-          handleRemoveProduct={handleRemoveProduct}
-          handleOpenModal={handleOpenModal}
-          onTypeTicket={setTypeTicket}
-          cart={cartFormatted}
-        />
-        <footer>
-          <button
-            type="button"
-            onClick={handleSubmit}
-            disabled={isRgDisabled || isPaymentDisabled}
-          >
-            Finalizar pedido
-          </button>
-          <button
-            type="button"
-            className="btn-modal"
-            onClick={() => setIsOpenModalPayment(true)}
-          >
-            Forma de Pagamento
-          </button>
-          <Total>
-            <span>TOTAL</span>
-            <strong>{total}</strong>
-          </Total>
-        </footer>
-
+        {cartEmpty ? (
+          <MyCart cartEmpty={cartEmpty} />
+        ) : (
+          <>
+            <CartList
+              handleRemoveProduct={handleRemoveProduct}
+              handleOpenModal={handleOpenModal}
+              onTypeTicket={setTypeTicket}
+              cart={cartFormatted}
+            />
+            <footer>
+              <button
+                type="button"
+                onClick={handleSubmit}
+                disabled={isRgDisabled || isPaymentDisabled || disabled}
+              >
+                Finalizar pedido
+              </button>
+              <button
+                type="button"
+                className="btn-modal"
+                onClick={() => setIsOpenModalPayment(true)}
+              >
+                Forma de Pagamento
+              </button>
+              <Total>
+                <span>TOTAL</span>
+                <strong>{total}</strong>
+              </Total>
+            </footer>
+          </>
+        )}
         <Participants
           isOpen={isOpenParticipants}
           onCloseModal={() => setIsOpenModalParticipants(false)}
@@ -143,7 +143,7 @@ export function Cart(): JSX.Element {
           onCloseModal={() => setIsOpenModalPayment(false)}
         />
 
-        <Ticket
+        <ModalTicket
           isOpen={isOpenModalTicket}
           onCloseModal={() => setIsOpenModalTicket(false)}
           ticket={ticket}

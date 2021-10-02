@@ -10,12 +10,11 @@ import { Loading } from '../Loading';
 import { ProductList } from './styles';
 
 interface CartItemsAmount {
-  [key: number]: number;
+  [key: string]: number;
 }
 
 export function EventList(): JSX.Element {
-  const { cart, addProduct, loadShoppingCart, loading, handleLoading } =
-    useCart();
+  const { cart, addProduct, loading, handleLoading } = useCart();
   const [products, setProducts] = useState<Product[]>([]);
 
   const cartItemsAmount = cart.reduce((sumAmount, product) => {
@@ -24,19 +23,21 @@ export function EventList(): JSX.Element {
   }, {} as CartItemsAmount);
 
   useEffect(() => {
-    const loadProducts = async () => {
+    try {
       handleLoading(true);
-      const { data } = await api.get('/products');
-      const { data: cart } = await api.get('/shoppingCart');
-      setProducts(data);
-      loadShoppingCart(cart);
+      const loadProducts = async () => {
+        const { data } = await api.get('/Evento/listall');
+        setProducts(data.result);
+        handleLoading(false);
+      };
+      loadProducts();
+    } catch (e) {
+      toast.error('Erro ao obter os dados');
       handleLoading(false);
-    };
+    }
+  }, [handleLoading]);
 
-    loadProducts();
-  }, [loadShoppingCart, handleLoading]);
-
-  const handleAddProduct = (productId: number) => {
+  const handleAddProduct = (productId: string) => {
     if (cart.length === 1) {
       toast.warning('Já existe um produto no carrinho!');
       return;
@@ -50,23 +51,23 @@ export function EventList(): JSX.Element {
       <ProductList>
         {products.map(product => (
           <li key={product.id}>
-            <img src={product.image} alt={product.title} />
+            <img src={product.urlImage} alt={product.titulo} />
             <div>
-              <strong>{product.title}</strong>
+              <strong>{product.titulo}</strong>
               <div className="information_bilhet">
-                <span>{product.location}</span>
+                <span>{product.endereco}</span>
                 <span className="date">
-                  {format(new Date(product.date), 'dd/MM/yyyy')}
+                  {format(new Date(product.data), 'dd/MM/yyyy HH:mm')}
                 </span>
               </div>
               <div className="price">
                 <div className="priceType">
                   <p>INTEIRA</p>
-                  <span>{formatPrice(product.fullPrice)}</span>
+                  <span>{formatPrice(product.preco)}</span>
                 </div>
                 <div className="priceType">
                   <p>MEIA</p>
-                  <span>{formatPrice(product.fullPrice / 2)}</span>
+                  <span>{formatPrice(product.preco / 2)}</span>
                 </div>
               </div>
             </div>

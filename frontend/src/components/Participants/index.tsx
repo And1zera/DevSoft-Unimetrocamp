@@ -4,13 +4,12 @@ import Modal from 'react-modal';
 import { toast } from 'react-toastify';
 import closeImg from '../../assets/close.svg';
 import { useCart } from '../../hooks/useCart';
-import { api } from '../../services/api';
 import { Container, Content } from './styles';
 
 interface ParticipantsProps {
   onCloseModal: () => void;
   isOpen: boolean;
-  id: number;
+  id: string;
   onIsRgExist: (value: boolean) => void;
 }
 
@@ -21,7 +20,7 @@ export function Participants({
   onIsRgExist,
 }: ParticipantsProps): JSX.Element {
   const [rg, setRg] = useState('');
-  const { cart, loadShoppingCart } = useCart();
+  const { cart, setCart } = useCart();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,13 +28,12 @@ export function Participants({
       toast.error('Campo RG é obrigatório');
       return;
     }
-    cart.map(async product => {
-      if (id === product.id) {
-        await api.put(`/shoppingCart/${id}`, { ...product, rg });
-      }
+    cart.map(product => {
+      setCart([{ ...product, rg }]);
+      localStorage.setItem('cart', JSON.stringify([{ ...product, rg }]));
+      return 0;
     });
-    const { data } = await api.get('/shoppingCart');
-    loadShoppingCart(data);
+
     onIsRgExist(false);
     onCloseModal();
   };

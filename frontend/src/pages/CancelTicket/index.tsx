@@ -1,26 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from 'react-modal';
 import { toast } from 'react-toastify';
 import closeImg from '../../assets/close.svg';
-import { Product } from '../../interfaces';
+import { Products } from '../../interfaces';
 import { api } from '../../services/api';
 import { Container } from './styles';
 
 interface CancelTicketProps {
   onCloseModal: () => void;
   isOpen: boolean;
-  id: number;
-  onProducts: (product: Product[]) => void;
+  onProducts: (product: Products[]) => void;
+  senha: string;
+  password: string;
+  setPassword: (value: string) => void;
 }
 
 export function CancelTicket({
   onCloseModal,
   isOpen,
-  id,
   onProducts,
+  senha,
+  password,
+  setPassword,
 }: CancelTicketProps): JSX.Element {
-  const [password, setPassword] = useState('');
-
   const handleSubmit = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
@@ -28,9 +30,9 @@ export function CancelTicket({
         toast.error('Campo senha é obrigatório');
         return;
       }
-      await api.delete(`/checkout/${id}`);
-      const { data } = await api.get('checkout');
-      onProducts(data);
+      await api.delete(`/Bilhete/${senha}`);
+      const { data } = await api.get('/Bilhete/listall');
+      onProducts(data.result);
       toast.success('Solicitação realizada');
       onCloseModal();
     } catch (err) {

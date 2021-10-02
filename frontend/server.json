@@ -69,26 +69,19 @@
     }
   ],
   "payment": {
-    "id": 5331,
+    "id": 6534,
     "customer": "1",
     "cpf": "1",
     "month": "1",
     "year": "1",
-    "cvv": "1",
+    "cvv": "11",
     "numberCard": "1"
   },
   "checkout": [
     {
-      "id": 3,
-      "title": "Homem aranha | sem volta para casa",
-      "fullPrice": 10,
-      "rg": "551456985",
-      "image": "https://lumiere-a.akamaihd.net/v1/images/1920x1080_logo_d3a5a5f4.png"
-    },
-    {
-      "id": 1,
-      "fullPrice": 50,
-      "rg": "1"
+      "id": "0d07227b-1701-4ef2-bdf9-1814a4db09d9",
+      "preco": 11.3,
+      "rg": "4587"
     }
   ]
 }
