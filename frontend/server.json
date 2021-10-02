@@ -69,13 +69,13 @@
     }
   ],
   "payment": {
-    "id": 7215,
-    "customer": "Jessica Silva",
-    "cpf": "47855630145",
-    "month": "11",
-    "year": "2022",
-    "cvv": "159",
-    "numberCard": "1254789652"
+    "id": 6534,
+    "customer": "1",
+    "cpf": "1",
+    "month": "1",
+    "year": "1",
+    "cvv": "11",
+    "numberCard": "1"
   },
   "checkout": [
     {

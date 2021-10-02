@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { CartList } from '../../components/CartList';
 import { Header } from '../../components/Header';
@@ -10,6 +10,7 @@ import { useCart } from '../../hooks/useCart';
 import { Tickets } from '../../interfaces';
 import { api } from '../../services/api';
 import { formatPrice } from '../../utils/format';
+import { MyCart } from './MyCart';
 import { Container, Total, Back } from './styles';
 
 export function Cart(): JSX.Element {
@@ -22,7 +23,15 @@ export function Cart(): JSX.Element {
   const [isPaymentDisabled, setIsPaymentDisabled] = useState(true);
   const [ticket, setTicket] = useState<Tickets | null>(null);
   const [disabled, setDisabled] = useState(false);
+  const [cartEmpty, setCartEmpty] = useState(false);
   const [id, setId] = useState('');
+  const cartSize = cart.length;
+
+  useEffect(() => {
+    if (!cartSize) {
+      setCartEmpty(true);
+    }
+  }, [cartSize]);
 
   const cartFormatted = cart.map(product => ({
     ...product,
@@ -90,33 +99,38 @@ export function Cart(): JSX.Element {
         </Back>
       </Header>
       <Container>
-        <CartList
-          handleRemoveProduct={handleRemoveProduct}
-          handleOpenModal={handleOpenModal}
-          onTypeTicket={setTypeTicket}
-          cart={cartFormatted}
-        />
-        <footer>
-          <button
-            type="button"
-            onClick={handleSubmit}
-            disabled={isRgDisabled || isPaymentDisabled || disabled}
-          >
-            Finalizar pedido
-          </button>
-          <button
-            type="button"
-            className="btn-modal"
-            onClick={() => setIsOpenModalPayment(true)}
-          >
-            Forma de Pagamento
-          </button>
-          <Total>
-            <span>TOTAL</span>
-            <strong>{total}</strong>
-          </Total>
-        </footer>
-
+        {cartEmpty ? (
+          <MyCart cartEmpty={cartEmpty} />
+        ) : (
+          <>
+            <CartList
+              handleRemoveProduct={handleRemoveProduct}
+              handleOpenModal={handleOpenModal}
+              onTypeTicket={setTypeTicket}
+              cart={cartFormatted}
+            />
+            <footer>
+              <button
+                type="button"
+                onClick={handleSubmit}
+                disabled={isRgDisabled || isPaymentDisabled || disabled}
+              >
+                Finalizar pedido
+              </button>
+              <button
+                type="button"
+                className="btn-modal"
+                onClick={() => setIsOpenModalPayment(true)}
+              >
+                Forma de Pagamento
+              </button>
+              <Total>
+                <span>TOTAL</span>
+                <strong>{total}</strong>
+              </Total>
+            </footer>
+          </>
+        )}
         <Participants
           isOpen={isOpenParticipants}
           onCloseModal={() => setIsOpenModalParticipants(false)}

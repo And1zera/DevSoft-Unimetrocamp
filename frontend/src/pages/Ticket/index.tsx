@@ -9,6 +9,7 @@ import { Back } from '../Cart/styles';
 import { Exchange } from '../Exchange';
 import { CancelTicket } from '../CancelTicket';
 import { Loading } from '../../components/Loading';
+import { MyTickets } from './MyTickets';
 
 export function Ticket(): JSX.Element {
   const [products, setProducts] = useState<Products[]>([]);
@@ -19,12 +20,17 @@ export function Ticket(): JSX.Element {
   const [rg, setRg] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [cartEmpty, setCartEmpty] = useState(false);
 
   useEffect(() => {
     try {
       const loadProducts = async () => {
         setLoading(true);
         const { data } = await api.get('/Bilhete/listall');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if (!data.result.filter((result: any) => result.ativo).length) {
+          setCartEmpty(true);
+        }
         setProducts(data.result);
         setLoading(false);
       };
@@ -65,59 +71,65 @@ export function Ticket(): JSX.Element {
       </Header>
       <Loading loading={loading} />
       <Container>
-        <Loading loading={loading} />
-        <ProductTable>
-          <thead>
-            <tr>
-              <th aria-label="product image" />
-              <th>EVENTO</th>
-              <th>Preço</th>
-              <th>RG do Participante</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map(
-              product =>
-                product.ativo && (
-                  <tr key={product.id}>
-                    <td>
-                      <img
-                        src={product.evento.urlImage}
-                        alt={product.evento.titulo}
-                      />
-                    </td>
-                    <td>
-                      <strong>{product.evento.titulo}</strong>
-                      <button
-                        type="button"
-                        className="btn-modal"
-                        onClick={() =>
-                          handleOpenModalExchange(product.id, product.senha)
-                        }
-                      >
-                        Trocar Participante
-                      </button>
-                    </td>
-                    <td>
-                      <span>{formatPrice(product.preco)}</span>
-                      <button
-                        type="button"
-                        className="btn-modal"
-                        onClick={() =>
-                          handleOpenModalCancelTicket(product.senha)
-                        }
-                      >
-                        Devolver Bilhete
-                      </button>
-                    </td>
-                    <td className="vertical-baseline">
-                      <span>{product.rg}</span>
-                    </td>
-                  </tr>
-                )
-            )}
-          </tbody>
-        </ProductTable>
+        {cartEmpty ? (
+          <MyTickets cartEmpty={cartEmpty} />
+        ) : (
+          <>
+            <Loading loading={loading} />
+            <ProductTable>
+              <thead>
+                <tr>
+                  <th aria-label="product image" />
+                  <th>EVENTO</th>
+                  <th>Preço</th>
+                  <th>RG do Participante</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.map(
+                  product =>
+                    product.ativo && (
+                      <tr key={product.id}>
+                        <td>
+                          <img
+                            src={product.evento.urlImage}
+                            alt={product.evento.titulo}
+                          />
+                        </td>
+                        <td>
+                          <strong>{product.evento.titulo}</strong>
+                          <button
+                            type="button"
+                            className="btn-modal"
+                            onClick={() =>
+                              handleOpenModalExchange(product.id, product.senha)
+                            }
+                          >
+                            Trocar Participante
+                          </button>
+                        </td>
+                        <td>
+                          <span>{formatPrice(product.preco)}</span>
+                          <button
+                            type="button"
+                            className="btn-modal"
+                            onClick={() =>
+                              handleOpenModalCancelTicket(product.senha)
+                            }
+                          >
+                            Devolver Bilhete
+                          </button>
+                        </td>
+                        <td className="vertical-baseline">
+                          <span>{product.rg}</span>
+                        </td>
+                      </tr>
+                    )
+                )}
+              </tbody>
+            </ProductTable>
+          </>
+        )}
       </Container>
       <Exchange
         onCloseModal={handleOpenCloseModalExchange}

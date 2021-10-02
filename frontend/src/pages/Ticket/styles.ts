@@ -61,3 +61,24 @@ export const ProductTable = styled.table`
     }
   }
 `;
+
+export const Empty = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  img {
+    margin-bottom: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--text-title);
+  }
+
+  .title {
+    font-weight: 500;
+  }
+`;
