@@ -13,6 +13,7 @@ interface CancelTicketProps {
   senha: string;
   password: string;
   setPassword: (value: string) => void;
+  setCartEmpty: (value: boolean) => void;
 }
 
 export function CancelTicket({
@@ -21,6 +22,7 @@ export function CancelTicket({
   onProducts,
   senha,
   password,
+  setCartEmpty,
   setPassword,
 }: CancelTicketProps): JSX.Element {
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,6 +34,9 @@ export function CancelTicket({
       }
       await api.delete(`/Bilhete/${senha}`);
       const { data } = await api.get('/Bilhete/listall');
+      setCartEmpty(
+        !data.result.filter((result: Products) => result.ativo).length
+      );
       onProducts(data.result);
       toast.success('Solicitação realizada');
       onCloseModal();

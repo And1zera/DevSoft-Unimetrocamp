@@ -12,7 +12,7 @@ export function MyCart({ cartEmpty }: MyCartProps): JSX.Element {
       {cartEmpty && (
         <>
           <img src={myTicket} alt="Meus bilhetes" width="500px" />
-          <p className="title">Você ainda não possui bilhete no carrinho</p>
+          <p className="title">Você não possui itens no carrinho</p>
         </>
       )}
     </Empty>

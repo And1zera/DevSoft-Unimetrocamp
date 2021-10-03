@@ -27,10 +27,9 @@ export function Ticket(): JSX.Element {
       const loadProducts = async () => {
         setLoading(true);
         const { data } = await api.get('/Bilhete/listall');
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        if (!data.result.filter((result: any) => result.ativo).length) {
-          setCartEmpty(true);
-        }
+        setCartEmpty(
+          !data.result.filter((result: Products) => result.ativo).length
+        );
         setProducts(data.result);
         setLoading(false);
       };
@@ -60,7 +59,7 @@ export function Ticket(): JSX.Element {
 
   const handleCloseModalCancelTicket = () => {
     setOpenModalCancelTicket(false);
-    setRg('');
+    setPassword('');
   };
   return (
     <>
@@ -143,6 +142,7 @@ export function Ticket(): JSX.Element {
         setPassword={setPassword}
       />
       <CancelTicket
+        setCartEmpty={setCartEmpty}
         onCloseModal={handleCloseModalCancelTicket}
         isOpen={openModalCancelTicket}
         senha={senha}
