@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useAuthenticator } from '../../hooks/useAuthenticator';
 import { useModal } from '../../hooks/useModal';
 import { Container } from './styles';
 
@@ -10,6 +11,14 @@ interface HeaderProps {
 
 export function Header({ isColorActive, children }: HeaderProps): JSX.Element {
   const { handleOpenModal } = useModal();
+  const { user, loadData } = useAuthenticator();
+  const history = useHistory();
+
+  const handleLogout = (e: React.FormEvent) => {
+    e.preventDefault();
+    loadData('', '');
+    history.push('/');
+  };
 
   return (
     <Container isColorActive={isColorActive}>
@@ -18,9 +27,15 @@ export function Header({ isColorActive, children }: HeaderProps): JSX.Element {
       </Link>
       <nav>
         {children}
-        <button className="login" type="button" onClick={handleOpenModal}>
-          Entrar
-        </button>
+        {user.email && user.password ? (
+          <button className="login" type="button" onClick={handleLogout}>
+            Sair
+          </button>
+        ) : (
+          <button className="login" type="button" onClick={handleOpenModal}>
+            Entrar
+          </button>
+        )}
       </nav>
     </Container>
   );

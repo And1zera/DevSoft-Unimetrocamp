@@ -6,7 +6,9 @@ import { Loading } from '../../components/Loading';
 import { ModalTicket } from '../../components/ModalTicket';
 import { Participants } from '../../components/Participants';
 import { Payment } from '../../components/Payment';
+import { useAuthenticator } from '../../hooks/useAuthenticator';
 import { useCart } from '../../hooks/useCart';
+import { useModal } from '../../hooks/useModal';
 import { Tickets } from '../../interfaces';
 import { api } from '../../services/api';
 import { formatPrice } from '../../utils/format';
@@ -15,6 +17,8 @@ import { Container, Total, Back } from './styles';
 
 export function Cart(): JSX.Element {
   const { removeProduct, loading, cart, setCart } = useCart();
+  const { user } = useAuthenticator();
+  const { handleOpenModal } = useModal();
   const [isOpenParticipants, setIsOpenModalParticipants] = useState(false);
   const [isOpenPayment, setIsOpenModalPayment] = useState(false);
   const [isOpenModalTicket, setIsOpenModalTicket] = useState(false);
@@ -58,7 +62,7 @@ export function Cart(): JSX.Element {
     removeProduct(productId);
   };
 
-  const handleOpenModal = (productId: string) => {
+  const handleOpenModalParticipants = (productId: string) => {
     setIsOpenModalParticipants(true);
     setId(productId);
   };
@@ -66,6 +70,11 @@ export function Cart(): JSX.Element {
   const handleSubmit = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
+      if (!user.email && !user.password) {
+        toast.warning('Necessário estar logado para finalizar a compra');
+        handleOpenModal();
+        return;
+      }
       let price = 0;
       cart.map(async product => {
         if (typeTicket === 'halfPrice') {
@@ -105,7 +114,7 @@ export function Cart(): JSX.Element {
           <>
             <CartList
               handleRemoveProduct={handleRemoveProduct}
-              handleOpenModal={handleOpenModal}
+              handleOpenModal={handleOpenModalParticipants}
               onTypeTicket={setTypeTicket}
               cart={cartFormatted}
             />

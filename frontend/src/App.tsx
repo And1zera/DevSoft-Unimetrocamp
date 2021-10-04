@@ -9,20 +9,23 @@ import { CartProvider } from './hooks/useCart';
 import { ModalProvider } from './hooks/useModal';
 import { Login } from './pages/Login';
 import { GlobalStyle } from './styles';
+import { AuthenticatorProvider } from './hooks/useAuthenticator';
 
 Modal.setAppElement('#root');
 
 export function App(): JSX.Element {
   return (
     <Router>
-      <CartProvider>
-        <ModalProvider>
-          <GlobalStyle />
-          <Routes />
-          <ToastContainer autoClose={3000} />
-          <Login />
-        </ModalProvider>
-      </CartProvider>
+      <AuthenticatorProvider>
+        <CartProvider>
+          <ModalProvider>
+            <GlobalStyle />
+            <Routes />
+            <ToastContainer autoClose={3000} />
+            <Login />
+          </ModalProvider>
+        </CartProvider>
+      </AuthenticatorProvider>
     </Router>
   );
 }

@@ -69,19 +69,26 @@
     }
   ],
   "payment": {
-    "id": 6534,
-    "customer": "1",
-    "cpf": "1",
-    "month": "1",
-    "year": "1",
-    "cvv": "11",
-    "numberCard": "1"
+    "id": 10115,
+    "customer": "Jessica Silva",
+    "cpf": "47855230624",
+    "month": "03",
+    "year": "25",
+    "cvv": "556",
+    "numberCard": "1552622389561259"
   },
   "checkout": [
     {
       "id": "0d07227b-1701-4ef2-bdf9-1814a4db09d9",
       "preco": 11.3,
       "rg": "4587"
+    }
+  ],
+  "login": [
+    {
+      "email": "jessica@gmail.com",
+      "password": "123",
+      "id": 1
     }
   ]
 }

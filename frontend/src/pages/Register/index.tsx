@@ -1,10 +1,32 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import { Header } from '../../components/Header';
+import { api } from '../../services/api';
 import { Back, Container } from './styles';
 
 export function Register(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    try {
+      e.preventDefault();
+      if (!email) {
+        toast.error('E-mail é obrigatório');
+        return;
+      }
+      if (!password) {
+        toast.error('Senha é obrigatório');
+        return;
+      }
+      api.post('http://localhost:3001/login', { email, password });
+      toast.success('Usuário cadastrado com sucesso');
+      setEmail('');
+      setPassword('');
+    } catch (err) {
+      toast.error('Erro ao tentar cadastrar usuário');
+    }
+  };
 
   return (
     <>
@@ -29,7 +51,11 @@ export function Register(): JSX.Element {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <button type="submit" disabled={!email || !password}>
+        <button
+          type="submit"
+          disabled={!email || !password}
+          onClick={handleSubmit}
+        >
           Cadastrar
         </button>
       </Container>
