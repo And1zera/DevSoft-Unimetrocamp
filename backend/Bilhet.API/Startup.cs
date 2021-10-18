@@ -47,6 +47,14 @@ namespace Bilhet.API
                 options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+                });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bilhet.API", Version = "v1" });
@@ -69,6 +77,8 @@ namespace Bilhet.API
             }
 
             UpdateDatabase(app);
+
+            app.UseCors("CorsPolicy");
 
             app.UseHealthChecks("/health");
 

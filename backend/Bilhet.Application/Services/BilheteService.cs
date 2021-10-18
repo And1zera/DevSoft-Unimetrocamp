@@ -69,6 +69,22 @@ namespace Bilhet.Application.Services
             return _unitOfWork.Commit();
         }
 
+        public async Task<bool> InactivateBySenha(string senha, Guid usuarioIdAlteracao)
+        {
+            var d = await _unitOfWork.BilheteRepository.GetByExpressionAsync(x => x.Senha.Equals(senha));
+
+            if (d == null)
+                return false;
+
+            d.Update(usuarioIdAlteracao);
+
+            d.Ativo = !d.Ativo;
+
+            _unitOfWork.BilheteRepository.Update(d);
+
+            return _unitOfWork.Commit();
+        }
+
         public async Task<IEnumerable<Bilhete>> ListAllAsync()
         {
             return await _unitOfWork.BilheteRepository.ListAllTrackingAsync();

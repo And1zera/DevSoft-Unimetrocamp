@@ -66,7 +66,7 @@ namespace Bilhet.Application.Services
 
         public async Task<IEnumerable<Evento>> ListAsync(Expression<Func<Evento, bool>> spec)
         {
-            return await _unitOfWork.EventoRepository.ListAsync(spec);
+            return await _unitOfWork.EventoRepository.ListTrackingAsync(spec);
         }
 
         public async Task<bool> UpdateAsync(Evento obj)

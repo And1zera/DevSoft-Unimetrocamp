@@ -14,7 +14,6 @@ C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Domain\bin\Debug\net5.0\Bilhet.Dom
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Domain\bin\Debug\net5.0\Bilhet.Domain.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Domain\bin\Debug\net5.0\ref\Bilhet.Domain.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Domain\bin\Debug\net5.0\Bilhet.Domain.pdb
-C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Domain\obj\Debug\net5.0\Bilhet.Domain.csprojAssemblyReference.cache
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Domain\obj\Debug\net5.0\Bilhet.Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Domain\obj\Debug\net5.0\Bilhet.Domain.AssemblyInfoInputs.cache
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Domain\obj\Debug\net5.0\Bilhet.Domain.AssemblyInfo.cs
@@ -22,3 +21,4 @@ C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Domain\obj\Debug\net5.0\Bilhet.Dom
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Domain\obj\Debug\net5.0\Bilhet.Domain.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Domain\obj\Debug\net5.0\ref\Bilhet.Domain.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Domain\obj\Debug\net5.0\Bilhet.Domain.pdb
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Domain\obj\Debug\net5.0\Bilhet.Domain.csprojAssemblyReference.cache
