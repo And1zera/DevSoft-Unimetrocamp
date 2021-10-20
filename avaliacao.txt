@@ -4,7 +4,7 @@ AVALIAÇÃO
 
 T-01 ( 2.0 pontos )
 
-Nota.... 1.25 pts
+Nota: 1.25 pts
 
 
 Descritivo de Casos de uso poderia ter o número do Caso de Uso ( exemplo, UC05 Comprar Bilhete ), para facilitar identificação no diagrama
@@ -14,3 +14,25 @@ Nomes dos Casos de Uso no descritivo estão diferentes dos nomes no diagrama ( e
 Alguns Casos de uso aparecem no descritivo, porém nã aparecem no Diagrama ( exemplo: Informar RG Participates )
 
 Somente 1 diagrama de sequencia foi entregue.
+
+
+============================================================================================================================================
+
+T-02 ( 2.0 pontos )
+
+Nota: 0.75 pts
+
+Diagramas poderiam trazer mais detalhes. 
+
+Por exemplo, diagrama fisico dificilmente a app rodaria em um único server de aplicaćão e um único server de banco de dados.
+
+O diagrama da arquitetura lógica ficou idêntico ao de arquitetura física, somente com os nomes das tecnologias a serem usadas. A idéia desse diagrama era mapear os módulos da aplicação escrita em C#, por exemplos.
+
+============================================================================================================================================
+
+
+T-03 ( 2.0 pontos )
+
+Nota: 2.0 pts
+
+============================================================================================================================================

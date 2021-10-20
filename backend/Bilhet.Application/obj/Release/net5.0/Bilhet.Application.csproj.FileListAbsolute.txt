@@ -1,0 +1,15 @@
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\bin\Release\net5.0\Bilhet.Application.deps.json
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\bin\Release\net5.0\Bilhet.Application.dll
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\bin\Release\net5.0\ref\Bilhet.Application.dll
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\bin\Release\net5.0\Bilhet.Application.pdb
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\bin\Release\net5.0\Bilhet.Domain.dll
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\bin\Release\net5.0\Bilhet.Domain.pdb
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\obj\Release\net5.0\Bilhet.Application.csprojAssemblyReference.cache
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\obj\Release\net5.0\Bilhet.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\obj\Release\net5.0\Bilhet.Application.AssemblyInfoInputs.cache
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\obj\Release\net5.0\Bilhet.Application.AssemblyInfo.cs
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\obj\Release\net5.0\Bilhet.Application.csproj.CoreCompileInputs.cache
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\obj\Release\net5.0\Bilhet.Application.csproj.CopyComplete
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\obj\Release\net5.0\Bilhet.Application.dll
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\obj\Release\net5.0\ref\Bilhet.Application.dll
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.Application\obj\Release\net5.0\Bilhet.Application.pdb

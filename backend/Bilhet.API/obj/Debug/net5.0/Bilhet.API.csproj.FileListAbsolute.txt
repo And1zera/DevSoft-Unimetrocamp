@@ -67,8 +67,9 @@ C:\Github\backend\Bilhet.API\bin\Debug\net5.0\Bilhet.Domain.pdb
 C:\Github\backend\Bilhet.API\bin\Debug\net5.0\Bilhet.IoC.pdb
 C:\Github\backend\Bilhet.API\bin\Debug\net5.0\Bilhet.Application.pdb
 C:\Github\backend\Bilhet.API\bin\Debug\net5.0\Bilhet.Repository.pdb
-C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\appsettings.json
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\appsettings.Development.json
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\appsettings.json
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\appsettings.Production.json
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Bilhet.API.exe
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Bilhet.API.deps.json
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Bilhet.API.runtimeconfig.json
@@ -77,8 +78,12 @@ C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Bilhet.API.dl
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\ref\Bilhet.API.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Bilhet.API.pdb
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\HealthChecks.SqlServer.dll
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\AutoMapper.dll
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Castle.Core.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Humanizer.dll
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -96,6 +101,9 @@ C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Microsoft.Ide
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.Newtonsoft.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -136,10 +144,3 @@ C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\obj\Debug\net5.0\Bilhet.API.dl
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\obj\Debug\net5.0\ref\Bilhet.API.dll
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\obj\Debug\net5.0\Bilhet.API.pdb
 C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\obj\Debug\net5.0\Bilhet.API.genruntimeconfig.cache
-C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\AutoMapper.dll
-C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
-C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
-C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Newtonsoft.Json.dll
-C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
-C:\Github\DevSoft-Unimetrocamp\backend\Bilhet.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.Newtonsoft.dll

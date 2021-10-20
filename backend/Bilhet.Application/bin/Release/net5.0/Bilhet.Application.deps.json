@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Bilhet.Application/1.0.0": {
+        "dependencies": {
+          "Bilhet.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Bilhet.Application.dll": {}
+        }
+      },
+      "Bilhet.Domain/1.0.0": {
+        "runtime": {
+          "Bilhet.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Bilhet.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Bilhet.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

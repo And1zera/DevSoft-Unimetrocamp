@@ -189,13 +189,13 @@ namespace Bilhet.API.Controllers
 
         }
 
-        [HttpDelete("{id:guid}")]
+        [HttpDelete("{senha}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400, Type = typeof(GenericResult<BilheteDTO>))]
         [ProducesResponseType(401)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(string senha)
         {
 
             var result = new GenericResult<BilheteDTO>();
@@ -203,7 +203,7 @@ namespace Bilhet.API.Controllers
             try
             {
 
-                if (await _bilheteService.Inactivate(id, Guid.Empty))
+                if (await _bilheteService.InactivateBySenha(senha, Guid.Empty))
                 {
                     return NoContent();
                 }
