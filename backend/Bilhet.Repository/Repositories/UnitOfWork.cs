@@ -11,6 +11,8 @@ namespace Bilhet.Repository.Repositories
 
         public IEventoRepository EventoRepository { get; }
         public IBilheteRepository BilheteRepository { get; }
+        public IUsuarioRepository UsuarioRepository { get; }
+        public IFidelidadeRepository FidelidadeRepository { get; }
 
         public UnitOfWork(BilhetContext context)
         {
@@ -18,6 +20,8 @@ namespace Bilhet.Repository.Repositories
 
             this.EventoRepository = new EventoRepository(_context);
             this.BilheteRepository = new BilheteRepository(_context);
+            this.UsuarioRepository = new UsuarioRepository(_context);
+            this.FidelidadeRepository = new FidelidadeRepository(_context);
 
         }
 

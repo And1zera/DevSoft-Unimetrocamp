@@ -6,6 +6,8 @@ namespace Bilhet.Domain.Interfaces.IRepositories
     {
         IEventoRepository EventoRepository { get; }
         IBilheteRepository BilheteRepository { get; }
+        IUsuarioRepository UsuarioRepository { get; }
+        IFidelidadeRepository FidelidadeRepository { get; }
 
         bool Commit();
     }
