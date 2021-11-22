@@ -15,6 +15,7 @@ interface CartListProps {
   handleRemoveProduct: (id: string) => void;
   onTypeTicket: (value: string) => void;
   onTypeLoyalty: (value: string) => void;
+  fidelidade: number | undefined;
 }
 
 export function CartList({
@@ -22,6 +23,7 @@ export function CartList({
   handleOpenModal,
   handleRemoveProduct,
   onTypeTicket,
+  fidelidade,
   onTypeLoyalty,
 }: CartListProps): JSX.Element {
   return (
@@ -32,7 +34,7 @@ export function CartList({
           <th>EVENTO</th>
           <th>QTD</th>
           <th>Tipo do bilhete</th>
-          <th>Usar pontuação</th>
+          {fidelidade === 1 && <th>Usar pontuação</th>}
           <th>SUBTOTAL</th>
           <th aria-label="delete icon" />
         </tr>
@@ -72,18 +74,19 @@ export function CartList({
                 <option value="halfPrice">MEIA</option>
               </select>
             </td>
-            <td>
-              <select
-                name="optLoyalty"
-                id="optLoyalty"
-                onChange={e => onTypeLoyalty(e.target.value)}
-              >
-                <option value="yes">SIM</option>
-                <option value="no" selected>
-                  NÃO
-                </option>
-              </select>
-            </td>
+            {fidelidade === 1 && (
+              <td>
+                <select
+                  name="optLoyalty"
+                  id="optLoyalty"
+                  onChange={e => onTypeLoyalty(e.target.value)}
+                  defaultValue="no"
+                >
+                  <option value="yes">SIM</option>
+                  <option value="no">NÃO</option>
+                </select>
+              </td>
+            )}
             <td>
               <strong>{product.subTotal}</strong>
             </td>

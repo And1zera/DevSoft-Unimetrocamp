@@ -9,11 +9,15 @@ import { Payment } from '../../components/Payment';
 import { useAuthenticator } from '../../hooks/useAuthenticator';
 import { useCart } from '../../hooks/useCart';
 import { useModal } from '../../hooks/useModal';
-import { Tickets } from '../../interfaces';
+import { Tickets, User } from '../../interfaces';
 import { api } from '../../services/api';
 import { formatPrice } from '../../utils/format';
 import { MyCart } from './MyCart';
 import { Container, Total, Back } from './styles';
+
+const VALUE_IN_REAL_SCORE = 0.2;
+
+type UserLogged = Pick<User, 'fidelidadePontuacao' | 'fidelidade'>;
 
 export function Cart(): JSX.Element {
   const { removeProduct, loading, cart, setCart } = useCart();
@@ -30,17 +34,34 @@ export function Cart(): JSX.Element {
   const [disabled, setDisabled] = useState(false);
   const [cartEmpty, setCartEmpty] = useState(false);
   const [id, setId] = useState('');
+  const [customerLoyalty, setCustomerLoyalty] = useState<UserLogged>({
+    fidelidadePontuacao: 0,
+    fidelidade: 0,
+  });
   const cartSize = cart.length;
 
   useEffect(() => {
     if (!cartSize) {
       setCartEmpty(true);
     }
-  }, [cartSize]);
+    api
+      .get('Usuario/listall')
+      .then(({ data }) => {
+        const findUser = data.result.find(
+          (customer: User) => customer.id === user.userId
+        );
+        if (!findUser) return;
+        setCustomerLoyalty(findUser);
+      })
+      .catch(() => toast.error('Ocorreu um erro ao acessar os dados'));
+  }, [cartSize, user.userId]);
+
+  const priceScore = customerLoyalty.fidelidadePontuacao * VALUE_IN_REAL_SCORE;
 
   const calculePrice = (price: number, qtd: number) => {
     if (typeLoyalty === 'yes' && typeTicket === 'halfPrice') {
-      return formatPrice((price / 2) * qtd - 5);
+      const value = (price / 2) * qtd - priceScore;
+      return value > 0 ? formatPrice(value) : formatPrice(0);
     }
 
     if (typeTicket === 'halfPrice') {
@@ -48,7 +69,8 @@ export function Cart(): JSX.Element {
     }
 
     if (typeLoyalty === 'yes' && typeTicket === 'fullPrice') {
-      return formatPrice(price * qtd - 5);
+      const value = price * qtd - priceScore;
+      return value > 0 ? formatPrice(value) : formatPrice(0);
     }
 
     return formatPrice(price * qtd);
@@ -64,8 +86,8 @@ export function Cart(): JSX.Element {
   const total = formatPrice(
     cart.reduce((sumTotal, product) => {
       if (typeLoyalty === 'yes' && typeTicket === 'halfPrice') {
-        sumTotal += (product.preco / 2) * product.qtd - 5;
-        return sumTotal;
+        sumTotal += (product.preco / 2) * product.qtd - priceScore;
+        return sumTotal > 0 ? sumTotal : 0;
       }
 
       if (typeTicket === 'halfPrice') {
@@ -74,8 +96,8 @@ export function Cart(): JSX.Element {
       }
 
       if (typeLoyalty === 'yes') {
-        sumTotal += product.preco - 5;
-        return sumTotal;
+        sumTotal += product.preco - priceScore;
+        return sumTotal > 0 ? sumTotal : 0;
       }
 
       sumTotal += product.preco * product.qtd;
@@ -103,7 +125,7 @@ export function Cart(): JSX.Element {
       let price = 0;
       cart.map(async product => {
         if (typeLoyalty === 'yes' && typeTicket === 'halfPrice') {
-          price = (product.preco / 2) * product.qtd - 5;
+          price = (product.preco / 2) * product.qtd - priceScore;
         }
 
         if (typeTicket === 'halfPrice' && typeLoyalty === 'no') {
@@ -111,16 +133,22 @@ export function Cart(): JSX.Element {
         }
 
         if (typeLoyalty === 'yes' && typeTicket === 'fullPrice') {
-          price = product.preco * product.qtd - 5;
+          price = product.preco * product.qtd - priceScore;
         }
 
         if (typeTicket === 'fullPrice' && typeLoyalty === 'no') {
           price = product.preco;
         }
 
+        if (price < 0) {
+          price = 0;
+        }
+
         const { data } = await api.post('/Bilhete', {
           Eventoid: product.id,
           Preco: price,
+          usuarioId: user.userId,
+          fidelidade: typeLoyalty === 'yes',
           RG: product.rg,
         });
         setTicket(data);
@@ -154,6 +182,7 @@ export function Cart(): JSX.Element {
               onTypeTicket={setTypeTicket}
               onTypeLoyalty={setTypeLoyalty}
               cart={cartFormatted}
+              fidelidade={customerLoyalty.fidelidade}
             />
             <footer>
               <button

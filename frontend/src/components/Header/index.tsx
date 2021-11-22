@@ -20,7 +20,7 @@ export function Header({ isColorActive, children }: HeaderProps): JSX.Element {
 
   const handleLogout = (e: React.FormEvent) => {
     e.preventDefault();
-    loadData('', '');
+    loadData('', '', '', 0, 0);
     history.push('/');
   };
 

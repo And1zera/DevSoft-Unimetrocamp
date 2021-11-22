@@ -69,9 +69,9 @@
     }
   ],
   "payment": {
-    "id": 10332,
+    "id": 4722,
     "customer": "1",
-    "cpf": "1",
+    "cpf": "11",
     "month": "1",
     "year": "1",
     "cvv": "1",
@@ -86,11 +86,19 @@
   ],
   "login": [
     {
-      "id": 1,
-      "email": "jessica@gmail.com",
-      "password": "123",
+      "nome": "jessica oliveira",
+      "login": "jessica",
+      "email": "jessica.oliveira@gmail.com",
+      "senha": "123",
+      "cpf": "4569871235",
       "fidelidade": true,
-      "point": 20
+      "fidelidadePontuacao": 0,
+      "id": 1,
+      "dataHoraCriacao": "2021-11-19T23:48:05.6804468",
+      "dataHoraAlteracao": "2021-11-20T01:06:01.6967407",
+      "usuarioIdCriacao": "00000000-0000-0000-0000-000000000000",
+      "usuarioIdAlteracao": "00000000-0000-0000-0000-000000000000",
+      "ativo": true
     }
   ]
 }

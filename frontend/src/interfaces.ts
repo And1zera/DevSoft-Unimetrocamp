@@ -28,4 +28,17 @@ export interface Evento {
 
 export interface Products extends Product {
   evento: Evento;
+  usuarioId: string;
+}
+
+export interface User {
+  email: string;
+  senha: string;
+  cpf: string;
+  nome: string;
+  fidelidade: number;
+  fidelidadePontuacao: number;
+  login: string;
+  id: string;
+  usuarioId?: string;
 }

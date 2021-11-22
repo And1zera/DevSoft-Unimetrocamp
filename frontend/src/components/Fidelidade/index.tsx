@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { toast } from 'react-toastify';
 import closeImg from '../../assets/close.svg';
+import { useAuthenticator } from '../../hooks/useAuthenticator';
+import { User } from '../../interfaces';
 import { api } from '../../services/api';
 import { Container } from './styles';
 
@@ -16,24 +18,27 @@ export function Fidelidade({
   isOpen,
 }: FidelidadeProps): JSX.Element {
   const [isLoyalty, setIsLoyalty] = useState(false);
-  const [dados, setDados] = useState<any>([]);
+  const { user } = useAuthenticator();
+
+  const [dados, setDados] = useState<User[]>([]);
 
   useEffect(() => {
     api
-      .get('http://localhost:3001/login')
+      .get('Usuario/listall')
       .then(({ data }) => {
-        setDados(data);
+        setDados(data.result);
       })
       .catch(() => toast.error('Ocorreu um erro, por favor tente novamente!'));
   }, []);
 
   const onSubmit = () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const updatedData = dados.map((d: any) => ({
       ...d,
       fidelidade: isLoyalty,
     }));
     setDados(updatedData);
-    api.put(`http://localhost:3001/login/${1}`, ...updatedData);
+    api.put('Usuario', { id: user.userId, fidelidade: isLoyalty ? 1 : 0 });
   };
 
   return (
@@ -58,33 +63,36 @@ export function Fidelidade({
         </p>
         <p>Habilite para se tornar cliente fidelidade</p>
         <form>
-          {dados.map((dt: any) => (
-            <>
-              <div className="switch">
-                <input
-                  id="switch-1"
-                  type="checkbox"
-                  className="switch-input"
-                  onClick={() => setIsLoyalty(!dt.fidelidade)}
-                  onChange={onSubmit}
-                  checked={dt.fidelidade}
-                />
-                <label htmlFor="switch-1" className="switch-label">
-                  Switch
-                </label>
-              </div>
-              {dt.fidelidade && (
-                <>
-                  <div className="divider" />
-                  <div>
-                    <span className="point">
-                      Sua pontuação: {dt.point} pontos
-                    </span>
+          {dados.map(
+            dt =>
+              user.userId === dt.id && (
+                <div key={dt.email}>
+                  <div className="switch">
+                    <input
+                      id="switch-1"
+                      type="checkbox"
+                      className="switch-input"
+                      onClick={() => setIsLoyalty(!dt.fidelidade)}
+                      onChange={onSubmit}
+                      checked={!!dt.fidelidade}
+                    />
+                    <label htmlFor="switch-1" className="switch-label">
+                      Switch
+                    </label>
                   </div>
-                </>
-              )}
-            </>
-          ))}
+                  {dt.fidelidade && (
+                    <>
+                      <div className="divider" />
+                      <div>
+                        <span className="point">
+                          Sua pontuação: {dt.fidelidadePontuacao} pontos
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </div>
+              )
+          )}
         </form>
       </Container>
     </Modal>

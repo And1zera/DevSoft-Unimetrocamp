@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { ProductTable, Container } from './styles';
 import { Header } from '../../components/Header';
-import { Products } from '../../interfaces';
+import { Products, User } from '../../interfaces';
 import { api } from '../../services/api';
 import { formatPrice } from '../../utils/format';
 import { Back } from '../Cart/styles';
@@ -10,12 +10,14 @@ import { Exchange } from '../Exchange';
 import { CancelTicket } from '../CancelTicket';
 import { Loading } from '../../components/Loading';
 import { MyTickets } from './MyTickets';
+import { useAuthenticator } from '../../hooks/useAuthenticator';
 
 export function Ticket(): JSX.Element {
   const [products, setProducts] = useState<Products[]>([]);
   const [openModalExchange, setOpenModalExchange] = useState(false);
   const [openModalCancelTicket, setOpenModalCancelTicket] = useState(false);
   const [id, setId] = useState('');
+  const { user } = useAuthenticator();
   const [senha, setSenha] = useState('');
   const [rg, setRg] = useState('');
   const [password, setPassword] = useState('');
@@ -30,6 +32,10 @@ export function Ticket(): JSX.Element {
         setCartEmpty(
           !data.result.filter((result: Products) => result.ativo).length
         );
+        const findUser = data.result.find(
+          (customer: User) => customer.usuarioId === user.userId
+        );
+        setCartEmpty(!findUser);
         setProducts(data.result);
         setLoading(false);
       };
@@ -38,7 +44,7 @@ export function Ticket(): JSX.Element {
       setLoading(false);
       toast.error('Erro ao obter os dados');
     }
-  }, []);
+  }, [user.userId]);
 
   const handleOpenModalExchange = (productId: string, senha: string) => {
     setOpenModalExchange(true);
@@ -87,7 +93,8 @@ export function Ticket(): JSX.Element {
               <tbody>
                 {products.map(
                   product =>
-                    product.ativo && (
+                    product.ativo &&
+                    user.userId === product.usuarioId && (
                       <tr key={product.id}>
                         <td>
                           <img
