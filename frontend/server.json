@@ -69,13 +69,13 @@
     }
   ],
   "payment": {
-    "id": 10115,
-    "customer": "Jessica Silva",
-    "cpf": "47855230624",
-    "month": "03",
-    "year": "25",
-    "cvv": "556",
-    "numberCard": "1552622389561259"
+    "id": 4722,
+    "customer": "1",
+    "cpf": "11",
+    "month": "1",
+    "year": "1",
+    "cvv": "1",
+    "numberCard": "1"
   },
   "checkout": [
     {
@@ -86,9 +86,19 @@
   ],
   "login": [
     {
-      "email": "jessica@gmail.com",
-      "password": "123",
-      "id": 1
+      "nome": "jessica oliveira",
+      "login": "jessica",
+      "email": "jessica.oliveira@gmail.com",
+      "senha": "123",
+      "cpf": "4569871235",
+      "fidelidade": true,
+      "fidelidadePontuacao": 0,
+      "id": 1,
+      "dataHoraCriacao": "2021-11-19T23:48:05.6804468",
+      "dataHoraAlteracao": "2021-11-20T01:06:01.6967407",
+      "usuarioIdCriacao": "00000000-0000-0000-0000-000000000000",
+      "usuarioIdAlteracao": "00000000-0000-0000-0000-000000000000",
+      "ativo": true
     }
   ]
 }

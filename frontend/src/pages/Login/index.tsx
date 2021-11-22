@@ -8,11 +8,7 @@ import { useModal } from '../../hooks/useModal';
 import { Container } from './styles';
 import { api } from '../../services/api';
 import { useAuthenticator } from '../../hooks/useAuthenticator';
-
-interface User {
-  email: string;
-  password: string;
-}
+import { User } from '../../interfaces';
 
 export function Login(): JSX.Element {
   const { handleCloseModal, isOpenModal } = useModal();
@@ -30,7 +26,8 @@ export function Login(): JSX.Element {
   const handleSubmit = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
-      const { data } = await api.get<User[]>('http://localhost:3001/login');
+      const { data } = await api.get('/Usuario/listall');
+      const { result } = data;
 
       if (!email && !password) {
         toast.error('Campos email e senha são obrigatórios');
@@ -47,32 +44,30 @@ export function Login(): JSX.Element {
         return;
       }
 
-      if (!data.length) {
+      if (!result.length) {
         toast.error('Usuário não encontrado');
         return;
       }
 
-      data.map(user => {
-        loadData(user.email, user.password);
-        if (user.email !== email && user.password !== password) {
-          toast.error('Usuário não identificado');
-          return;
-        }
+      const user = result.find(
+        (user: User) => user.email === email && user.senha === password
+      );
 
-        if (user.email !== email) {
-          toast.error('Email ou senha inválidos');
-          return;
-        }
-
-        if (user.password !== password) {
-          toast.error('Email ou senha inválidos');
-          return;
-        }
-        history.push('/bilhet/events');
-        setEmail('');
-        setPassword('');
-        return handleCloseModal();
-      });
+      if (!user) {
+        toast.error('Usuário não identificado');
+        return;
+      }
+      loadData(
+        user.email,
+        user.senha,
+        user.id,
+        user.fidelidadePontuacao,
+        user.fidelidade
+      );
+      history.push('/bilhet/events');
+      setEmail('');
+      setPassword('');
+      return handleCloseModal();
     } catch (e) {
       toast.error('Usuário não identificado');
     }
