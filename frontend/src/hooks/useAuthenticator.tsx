@@ -7,12 +7,21 @@ interface AuthenticatorProviderProps {
 
 interface AuthenticatorContextData {
   user: User;
-  loadData: (email: string, password: string) => void;
+  loadData: (
+    email: string,
+    password: string,
+    userId: string,
+    fidelidadePontuacao: number,
+    fidelidade: number
+  ) => void;
 }
 
 interface User {
   email: string;
   password: string;
+  userId: string;
+  fidelidadePontuacao: number;
+  fidelidade: number;
 }
 
 const AuthenticatorContext = createContext({} as AuthenticatorContextData);
@@ -23,11 +32,26 @@ export function AuthenticatorProvider({
   const [user, setUser] = useState<User>({
     email: '',
     password: '',
+    userId: '',
+    fidelidadePontuacao: 0,
+    fidelidade: 0,
   });
 
-  const loadData = async (email: string, password: string) => {
-    setUser({ email, password });
+  const loadData = async (
+    email: string,
+    password: string,
+    userId: string,
+    fidelidadePontuacao: number,
+    fidelidade: number
+  ) => {
+    setUser({ email, password, userId, fidelidadePontuacao, fidelidade });
   };
+
+  // console.log(user.email);
+  // console.log(user.userId);
+  // console.log(user.password);
+  // console.log(user.fidelidadePontuacao);
+  // console.log(user.fidelidade);
 
   return (
     <AuthenticatorContext.Provider

@@ -45,5 +45,58 @@ export const Container = styled.header<ContainerProps>`
         filter: brightness(0.9);
       }
     }
+
+    .menu {
+      background: none;
+      border: 0;
+      margin-left: 2rem;
+      height: 33px;
+      position: relative;
+
+      .content {
+        position: absolute;
+        background: white;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        border-radius: 0.25rem;
+        top: 180%;
+        left: 0%;
+        transform: translate(-60%, -40%);
+        z-index: 100;
+      }
+
+      ul {
+        width: 190px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        list-style: none;
+
+        li {
+          width: 100%;
+          transition: background-color 0.2s;
+
+          & + li {
+            border-top: 1px solid #f6f6f6;
+          }
+
+          &:hover {
+            background-color: #fafafa;
+            border-radius: 0.25rem;
+          }
+
+          button {
+            width: 100%;
+            height: 100%;
+            padding: 1rem;
+            background-color: transparent;
+            color: var(--text-title);
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: 0;
+          }
+        }
+      }
+    }
   }
 `;
