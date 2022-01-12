@@ -11,10 +11,10 @@ namespace Bilhet.API.Configurations
 
             CreateMap<EventoDTO, Evento>().ReverseMap();
 
-            CreateMap<BilheteDTO, Bilhete>().ReverseMap();
+            CreateMap<BilheteDTO, Bilhete>().ReverseMap()
+                .ForMember(c => c.Usuario, opt => opt.Ignore());
 
-            CreateMap<UsuarioDTO, Usuario>().ReverseMap()
-                .ForMember(c => c.Fidelidades, opt => opt.Ignore());
+            CreateMap<UsuarioDTO, Usuario>().ReverseMap();
 
             CreateMap<FidelidadeDTO, Fidelidade>().ReverseMap()
                 .ForMember(c => c.Bilhete, opt => opt.Ignore())

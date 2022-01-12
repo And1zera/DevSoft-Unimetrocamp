@@ -76,11 +76,11 @@ namespace Bilhet.Application.Services
 
             d.Update(obj.UsuarioIdAlteracao.Value);
 
-            d.Nome = obj.Nome;
-            d.CPF = obj.CPF;
-            d.Login = obj.Login;
-            d.Email = obj.Email;
-            d.Senha = obj.Senha;
+            d.Nome = obj.Nome == null ? d.Nome : obj.Nome;
+            d.CPF = obj.CPF == null ? d.CPF : obj.CPF;
+            d.Login = obj.Login == null ? d.Login : obj.Login;
+            d.Email = obj.Email == null ? d.Email : obj.Email;
+            d.Senha = obj.Senha == null ? d.Senha : obj.Senha;
             d.Fidelidade = obj.Fidelidade;
 
             _unitOfWork.UsuarioRepository.Update(d);

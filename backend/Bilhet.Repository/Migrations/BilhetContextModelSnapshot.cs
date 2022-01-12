@@ -39,6 +39,9 @@ namespace Bilhet.Repository.Migrations
                     b.Property<Guid>("EventoId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("Fidelidade")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(18,2)");
 
@@ -46,6 +49,17 @@ namespace Bilhet.Repository.Migrations
                         .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
+
+                    b.Property<string>("UsuarioCPF")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UsuarioEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UsuarioIdAlteracao")
                         .HasColumnType("uniqueidentifier");
@@ -56,6 +70,8 @@ namespace Bilhet.Repository.Migrations
                     b.HasKey("Id", "Senha");
 
                     b.HasIndex("EventoId");
+
+                    b.HasIndex("UsuarioCPF", "UsuarioEmail");
 
                     b.ToTable("Bilhete");
                 });
@@ -110,6 +126,107 @@ namespace Bilhet.Repository.Migrations
                     b.ToTable("Evento");
                 });
 
+            modelBuilder.Entity("Bilhet.Domain.Entities.Fidelidade", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("BilheteId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BilheteSenha")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CPF")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DataHoraAlteracao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataHoraCriacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Pontos")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UsuarioCPF")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UsuarioEmail")
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<Guid?>("UsuarioIdAlteracao")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UsuarioIdCriacao")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BilheteId", "BilheteSenha");
+
+                    b.HasIndex("UsuarioCPF", "UsuarioEmail");
+
+                    b.ToTable("Fidelidade");
+                });
+
+            modelBuilder.Entity("Bilhet.Domain.Entities.Usuario", b =>
+                {
+                    b.Property<string>("CPF")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DataHoraAlteracao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataHoraCriacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Fidelidade")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<Guid?>("UsuarioIdAlteracao")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UsuarioIdCriacao")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CPF", "Email");
+
+                    b.ToTable("Usuario");
+                });
+
             modelBuilder.Entity("Bilhet.Domain.Entities.Bilhete", b =>
                 {
                     b.HasOne("Bilhet.Domain.Entities.Evento", "Evento")
@@ -118,12 +235,42 @@ namespace Bilhet.Repository.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Bilhet.Domain.Entities.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCPF", "UsuarioEmail")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Evento");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Bilhet.Domain.Entities.Fidelidade", b =>
+                {
+                    b.HasOne("Bilhet.Domain.Entities.Bilhete", "Bilhete")
+                        .WithMany()
+                        .HasForeignKey("BilheteId", "BilheteSenha")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Bilhet.Domain.Entities.Usuario", "Usuario")
+                        .WithMany("Fidelidades")
+                        .HasForeignKey("UsuarioCPF", "UsuarioEmail")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Bilhete");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Bilhet.Domain.Entities.Evento", b =>
                 {
                     b.Navigation("Bilhetes");
+                });
+
+            modelBuilder.Entity("Bilhet.Domain.Entities.Usuario", b =>
+                {
+                    b.Navigation("Fidelidades");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,7 +2,6 @@
 using Bilhet.Domain.Entities;
 using Bilhet.Domain.Interfaces.IRepositories;
 using Bilhet.Domain.Interfaces.IServices;
-using Bilhet.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +33,41 @@ namespace Bilhet.Application.Services
                 {
                     obj.Senha = GeradorSenhas.Gerar();
                 }
+
+                var usuario = await _unitOfWork.UsuarioRepository.GetByIdAsync(obj.UsuarioId);
+
+                if (obj.Fidelidade)
+                {
+                    var fidelidades = await _unitOfWork.FidelidadeRepository.ListAsync(e => e.Ativo && e.Email == usuario.Email);
+
+                    if(fidelidades.Count > 0)
+                    {
+                        foreach (var fidelidade in fidelidades)
+                        {
+                            _unitOfWork.FidelidadeRepository.Delete(fidelidade);
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Saldo de fidelidade insuficiente !");
+                    }
+                }
+                else
+                {
+                    var fidelidade = new Fidelidade()
+                    {
+                        Pontos = 1,
+                        Bilhete = obj,
+                        Email = usuario.Email,
+                        Usuario = usuario
+                    };
+
+                    fidelidade.Create(usuario.Id);
+
+                    _unitOfWork.FidelidadeRepository.Add(fidelidade);
+                }
+
+                obj.Usuario = usuario;
 
                 var ret = _unitOfWork.BilheteRepository.Add(obj);
 

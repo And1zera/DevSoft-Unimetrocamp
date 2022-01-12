@@ -109,7 +109,7 @@ namespace Bilhet.API.Controllers
             catch (Exception e)
             {
 
-                result.Errors = new[] { "Ocorreu uma exceção ao executar a ação, tente novamente mais tarde." };
+                result.Errors = new[] { "Ocorreu uma exceção ao executar a ação, tente novamente mais tarde.", e.Message };
                 //Error.Register(_logger, e);
                 return BadRequest(result);
 

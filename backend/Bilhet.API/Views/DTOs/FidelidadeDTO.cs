@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Bilhet.API;
+using System;
 
 namespace Bilhet.Domain.Entities
 {
-    public class FidelidadeDTO
+    public class FidelidadeDTO : BaseDTO
     {
         public Guid UsuarioId { get; set; }
         public Guid BilheteId { get; set; }

@@ -2,10 +2,10 @@
 
 namespace Bilhet.Domain.Entities
 {
-    public class Fidelidade
+    public class Fidelidade : BaseEntity
     {
-        public Guid UsuarioId { get; set; }
-        public Guid BilheteId { get; set; }
+        public string CPF { get; set; }
+        public string Email { get; set; }
         public int Pontos { get; set; }
 
         public virtual Usuario Usuario { get; set; }

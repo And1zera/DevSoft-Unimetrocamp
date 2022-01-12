@@ -15,8 +15,6 @@ namespace Bilhet.Repository.Configurations
             builder.Property(e => e.Email).HasMaxLength(255).IsRequired();
             builder.Property(e => e.Senha).HasMaxLength(255).IsRequired();
             builder.Property(e => e.Fidelidade).IsRequired();
-
-            builder.HasMany(e => e.Fidelidades).WithOne(e => e.Usuario).HasForeignKey(e => e.UsuarioId);
         }
     }
 }
